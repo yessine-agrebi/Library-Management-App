@@ -7,6 +7,6 @@ const editeurSchema = mongoose.Schema({
     email: {type: String, required: true},
 })
 
-const editeur = mongoose.model('editeurs', editeurSchema );
+const editeurs = mongoose.model('editeurs', editeurSchema );
 
-export default editeur;
+export default editeurs;
