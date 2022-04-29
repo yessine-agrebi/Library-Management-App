@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
+import livreRouter from './routes/livres.route.js';
+import editeurRouter from './routes/editeurs.route.js'
 dotenv.config();
 const app = express();
 const db = process.env.DATABASE;
@@ -13,7 +15,10 @@ mongoose.connect(db, {
 process.exit();
 });
 
-app.use(express.json())
+app.use(express.json());
+app.use('/livres', livreRouter);
+app.use('/editeurs', editeurRouter);
+
 
 
 app.get('/', (req, res) => {
