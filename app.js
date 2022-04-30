@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import livreRouter from './routes/livres.route.js';
-import editeurRouter from './routes/editeurs.route.js'
-import auteurRouter from './routes/auteurs.route.js'
-import specialiteRouter from './routes/specialites.route.js'
+import editeurRouter from './routes/editeurs.route.js';
+import auteurRouter from './routes/auteurs.route.js';
+import specialiteRouter from './routes/specialites.route.js';
+
 dotenv.config();
 const app = express();
 const db = process.env.DATABASE;
@@ -13,7 +14,7 @@ const port = process.env.PORT;
 
 mongoose.connect(db, {
     useNewUrlParser: true,
-}).then(() => console.log('database connected successfully')).catch(err => {console.log('Connection to database rejected', err)
+}).then(() => console.log('database connected successfully')).catch(err => {console.log('Connection to database rejected', err);
 process.exit();
 });
 
