@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 const specialiteSch = mongoose.Schema({
-    _id: ObjectID,
     npmspecialite: String
 });
 

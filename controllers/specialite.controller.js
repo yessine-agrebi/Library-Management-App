@@ -1,6 +1,6 @@
-import Specialite from "../models/specialite.model";
+import Specialite from "../models/specialite.model.js";
 
-export const getSpecialite = async (req, res) => {
+export const getSpecialites = async (req, res) => {
     try{
         const spec = await Specialite.find();
         res.status(200).json(spec);
