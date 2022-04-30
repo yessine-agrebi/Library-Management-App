@@ -8,6 +8,7 @@ import auteurRouter from './routes/auteurs.route.js';
 import specialiteRouter from './routes/specialites.route.js';
 import clientRouter from './routes/clients.route.js';
 import commandeRouter from './routes/commande.route.js';
+import userRouter from './routes/users.route.js'
 
 dotenv.config();
 const app = express();
@@ -27,6 +28,8 @@ app.use('/auteurs', auteurRouter);
 app.use('/specialites', specialiteRouter);
 app.use('/clients', clientRouter);
 app.use('/commandes', commandeRouter);
+app.use('/users', userRouter);
+
 
 
 
