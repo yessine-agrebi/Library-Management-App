@@ -6,6 +6,7 @@ import livreRouter from './routes/livres.route.js';
 import editeurRouter from './routes/editeurs.route.js';
 import auteurRouter from './routes/auteurs.route.js';
 import specialiteRouter from './routes/specialites.route.js';
+import clientRouter from './routes/clients.route.js'
 
 dotenv.config();
 const app = express();
@@ -23,6 +24,7 @@ app.use('/livres', livreRouter);
 app.use('/editeurs', editeurRouter);
 app.use('/auteurs', auteurRouter);
 app.use('/specialites', specialiteRouter);
+app.use('/clients', clientRouter);
 
 
 
