@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import Client from "./client.model";
+import Client from "./client.model.js";
 
 const commandeSch = mongoose.Schema({
     total: {type: Number, required: true},

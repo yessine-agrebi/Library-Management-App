@@ -4,7 +4,7 @@ import { getCommandes } from "../controllers/commande.controller.js";
 const router = express.Router();
 
 
-router('/', getCommandes);
+router.get('/', getCommandes);
 
 
 
