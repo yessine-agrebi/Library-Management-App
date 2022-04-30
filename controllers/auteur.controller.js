@@ -1,4 +1,4 @@
-import Auteur from "../models/auteur.model";
+import Auteur from "../models/auteur.model.js";
 
 
 export const getAuteurs = async (req, res) =>{
