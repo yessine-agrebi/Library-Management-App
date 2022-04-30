@@ -9,7 +9,7 @@ const livreSchema = mongoose.Schema({
     qtestock: {type: Number, required: true},
     couverture: {type: String, required: true},
     maised: {type: mongoose.Schema.Types.ObjectId,ref:editeurs, required: true,},
-    auteurs: {type: mongoose.Schema.Types.ObjectId,ref:Auteur, required: true},
+    auteurs: {type: mongoose.Schema.Types.Array,ref:Auteur, required: true},
 
     
 
