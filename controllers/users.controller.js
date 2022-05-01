@@ -1,5 +1,6 @@
 import User from "../models/users.model.js";
 import {v4 as uuidv4} from 'uuid';
+import mongoose from "mongoose";
 
 
 export const getUsers = async (req, res) => {
@@ -39,6 +40,16 @@ export const addUser = async (req, res) => {
     }catch(error){
         res.status(409).json({ message: error.message });
     }
-    
+}
 
+export const upadateUser = async (req, res) => {
+    const {id} = req.params;
+    const {nom, email, password} = req.body;
+
+    if(!mongoose.Types.ObjectId.isValid(id))return res.status(404).send(`pas d'utilisateur avec un id: ${id}`);
+    
+    const us = {nom: nom, email: email, password: password, _id: id};
+
+    await User.findByIdAndUpdate(req.params.id, us);
+    res.json(us);
 }
