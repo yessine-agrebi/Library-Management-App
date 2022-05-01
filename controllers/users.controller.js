@@ -19,3 +19,12 @@ export const getOneUser = async (req, res) => {
         res.status(404).json({message: error.message});
     }
 }
+
+export const deleteUser = async (req, res) => {
+    try {
+        const user = await User.findOneAndRemove(req.params.id);
+        res.status(200).json(user);
+    }catch {
+        res.status(404).json({message: error.message});
+    }
+}
