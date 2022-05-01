@@ -19,6 +19,19 @@ export const getOneAuthor = async (req, res) => {
         res.status(404).json({message: error.message})
     }
 }
+export const createAuthor = async (req, res) => {
+    const { nomauteur, email, numtel} = req.body;
+
+    const newAuthor = new Auteur({ nomauteur: nomauteur, email: email, numtel: numtel });
+
+    try {
+        await newAuthor.save();
+
+        res.status(201).json(newAuthor);
+    } catch (error) {
+        res.status(409).json({ message: error.message });
+    }
+}
 
 export const updateAuthor = async (req, res) => {
     const { id } = req.params;
