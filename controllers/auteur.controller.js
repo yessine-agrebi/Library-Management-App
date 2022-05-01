@@ -1,4 +1,5 @@
 import Auteur from "../models/auteur.model.js";
+import mongoose from "mongoose";
 
 
 export const getAuteurs = async (req, res) =>{
