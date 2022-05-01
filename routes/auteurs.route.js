@@ -1,5 +1,5 @@
 import express from "express";
-import { getAuteurs, getOneAuthor, updateUser } from "../controllers/auteur.controller.js";
+import { getAuteurs, getOneAuthor, updateAuthor, deleteAuthor } from "../controllers/auteur.controller.js";
 
 
 
@@ -7,7 +7,8 @@ const router = express.Router();
 
 router.get('/', getAuteurs);
 router.get('/:id', getOneAuthor);
-router.put('/:id', updateUser);
+router.put('/:id', updateAuthor);
+router.delete('/:id', deleteAuthor);
 
 
 
