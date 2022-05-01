@@ -1,11 +1,12 @@
 import express from "express";
-import { getAuteurs } from "../controllers/auteur.controller.js";
+import { getAuteurs, getOneAuthor } from "../controllers/auteur.controller.js";
 
 
 
 const router = express.Router();
 
 router.get('/', getAuteurs);
+router.get('/:id', getOneAuthor);
 
 
 
