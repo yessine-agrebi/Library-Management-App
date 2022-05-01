@@ -1,4 +1,5 @@
 import User from "../models/users.model.js";
+import {v4 as uuidv4} from 'uuid';
 
 
 export const getUsers = async (req, res) => {
@@ -27,4 +28,17 @@ export const deleteUser = async (req, res) => {
     }catch {
         res.status(404).json({message: error.message});
     }
+}
+
+export const addUser = async (req, res) => {
+    const {nom, email, password} = req.body;
+    const newUser = new User({nom: nom, email: email, password: password});
+    try{
+        await newUser.save();
+        res.status(201).json(newUser);
+    }catch(error){
+        res.status(409).json({ message: error.message });
+    }
+    
+
 }
