@@ -18,3 +18,14 @@ export const getOneClient = async (req, res) => {
         res.status(404).json({message: error.message});
     }
 }
+
+export const createClient = async (req, res) => {
+    const {client} = req.body;
+    const newClient = new Client({...client});
+    try {
+        await newClient.save();
+        res.status(201).json(newClient);
+    }catch(error){
+        res.status(409).json({message: error.message});
+    }
+}

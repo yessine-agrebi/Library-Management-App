@@ -1,11 +1,13 @@
 import express from "express";
-import { getClients } from "../controllers/client.controller.js";
+import { getClients, getOneClient, createClient } from "../controllers/client.controller.js";
 
 
 const router = express.Router();
 
 
 router.get('/', getClients);
+router.get('/:id', getOneClient);
+router.post('/', createClient);
 
 
 export default router;
