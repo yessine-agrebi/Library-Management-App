@@ -1,5 +1,4 @@
 import User from "../models/users.model.js";
-import {v4 as uuidv4} from 'uuid';
 import mongoose from "mongoose";
 
 
