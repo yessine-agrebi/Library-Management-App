@@ -16,7 +16,7 @@ export const getOneClient = async (req, res) => {
         const client = await Client.findById(req.params.id);
         res.status(200).json(client);
     }catch(error){
-        res.status(404).json({message: error.message});
+        res.send("not found");
     }
 }
 
@@ -43,4 +43,13 @@ export const updateClient = async (req, res) => {
     await Client.findByIdAndUpdate(req.params.id, cl);
 
     res.json(cl);
+};
+
+export const deleteClient = async (req, res) => {
+    try {
+        const client = await Client.findByIdAndRemove(req.params.id);
+        res.status(200).json(client)
+    }catch(error){
+        res.staus(404).json({message: error.message})
+    }
 }
