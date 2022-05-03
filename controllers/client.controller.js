@@ -8,3 +8,13 @@ export const getClients = async (req, res) => {
         res.status(404).json({message: error.message});
     }
 }
+
+
+export const getOneClient = async (req, res) => {
+    try {
+        const client = await Client.findById(req.params.id);
+        res.status(200).json(client);
+    }catch(error){
+        res.status(404).json({message: error.message});
+    }
+}
