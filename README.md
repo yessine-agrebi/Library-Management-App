@@ -1,3 +1,13 @@
-# Gestion-Bibliotheque
+# Library Management Web App
 
-## Une API CRUD REST en utilisant Angular Node.js Express et MongoDB avec mongoose.
+##  REST API CRUD using :
+- Angular 
+- Node.js 
+- Express
+-  MongoDB with mongoose.
+
+# Functionalities:
+- Create Users/Clients
+- Login system (authentification will be added soon)
+- Add / update / remove books.
+

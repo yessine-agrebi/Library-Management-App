@@ -29,7 +29,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "https://cdn.tailwindcss.com"
+            ]
           },
           "configurations": {
             "production": {
