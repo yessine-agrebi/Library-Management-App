@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export const getLivres = async (req, res) => {
     try {
-        const livre = await livres.find();
+        const livre = await livres.find().populate('auteurs').populate('specialite').populate('maised', '-siteweb -email');
         res.status(200).json(livre);
     }catch(error){
         res.status(404).json({message: error.message});
@@ -12,7 +12,7 @@ export const getLivres = async (req, res) => {
 
 export const getOneLivre = async (req, res) => {
     try {
-        const livre = await livres.findById(req.params.id);
+        const livre = await livres.findById(req.params.id).populate('auteurs').populate('specialite').populate('maised');
         res.status(200).json(livre);
     }catch(error){
         res.send("not found");
