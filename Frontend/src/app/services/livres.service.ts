@@ -7,7 +7,7 @@ import { Livres } from '../models/livres';
   providedIn: 'root'
 })
 export class LivresService {
-  url = "Access-Control-Allow-Origin: http://localhost:3001/livres";
+  url = "http://localhost:3001/api/livres";
   constructor(private http:HttpClient) { }
 
   ListLivres = ():Observable<Livres[]> => {

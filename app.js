@@ -20,18 +20,19 @@ app.use(cors());
 
 mongoose.connect(db, {
     useNewUrlParser: true,
+    useUnifiedTopology: true,
 }).then(() => console.log("database connected successfully")).catch(err => {console.log("Connection to database rejected", err);
 process.exit();
 });
 
 
-app.use("/livres", livreRouter);
-app.use("/editeurs", editeurRouter);
-app.use("/auteurs", auteurRouter);
-app.use("/specialites", specialiteRouter);
-app.use("/clients", clientRouter);
-app.use("/commandes", commandeRouter);
-app.use("/users", userRouter);
+app.use("/api/livres", livreRouter);
+app.use("/api/editeurs", editeurRouter);
+app.use("/api/auteurs", auteurRouter);
+app.use("/api/specialites", specialiteRouter);
+app.use("/api/clients", clientRouter);
+app.use("/api/commandes", commandeRouter);
+app.use("/api/users", userRouter);
 
 
 
