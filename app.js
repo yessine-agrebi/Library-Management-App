@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 
 import livreRouter from "./routes/livres.route.js";
 import editeurRouter from "./routes/editeurs.route.js";
@@ -14,6 +15,8 @@ dotenv.config();
 const app = express();
 const db = process.env.DATABASE;
 const port = process.env.PORT;
+app.use(express.json());
+app.use(cors());
 
 mongoose.connect(db, {
     useNewUrlParser: true,
@@ -21,7 +24,7 @@ mongoose.connect(db, {
 process.exit();
 });
 
-app.use(express.json());
+
 app.use("/livres", livreRouter);
 app.use("/editeurs", editeurRouter);
 app.use("/auteurs", auteurRouter);
