@@ -8,5 +8,5 @@ export class Livres {
     couverture: String;
     specialite: Object;
     maised: Object;
-    auteurs: Object;
+    auteurs: [];
 }
