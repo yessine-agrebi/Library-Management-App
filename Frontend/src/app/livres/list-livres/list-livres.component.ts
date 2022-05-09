@@ -8,18 +8,20 @@ import { LivresService } from 'src/app/services/livres.service';
   styleUrls: ['./list-livres.component.css']
 })
 export class ListLivresComponent implements OnInit {
-  listLivres :Livres[];
-  auteur: [];
+  listLivres : any;
+  
   constructor(private livService: LivresService) { }
 
   ngOnInit(): void {
     this.getLivres();
   }
   getLivres = () => {
-    this.livService.ListLivres().subscribe((data: Livres[]) => {
-      this.listLivres = data;
-      console.log(typeof(this.listLivres[0].auteurs));
+     this.livService.ListLivres().subscribe((res: any) => {
+      console.log(res)
+    this.listLivres = res;
     })
+      
+      
   }
 
 
