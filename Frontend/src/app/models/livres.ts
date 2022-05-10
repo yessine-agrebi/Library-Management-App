@@ -2,7 +2,7 @@ export class Livres {
     _id: Object;
     isbn: String;
     titre: String;
-    anneeedition: Number;
+    annedition: Number;
     prix: Number;
     qtestock: Number;
     couverture: String;
