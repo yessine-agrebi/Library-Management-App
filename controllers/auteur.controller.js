@@ -1,6 +1,6 @@
 import Auteur from "../models/auteur.model.js";
 import mongoose from "mongoose";
-
+import { escape } from "html-escaper";
 
 export const getAuteurs = async (req, res) =>{
     try {
@@ -20,7 +20,7 @@ export const getOneAuthor = async (req, res) => {
     }
 }
 export const createAuthor = async (req, res) => {
-    const { nomauteur, email, numtel} = req.body;
+    const { nomauteur, email, numtel} = escape(req.body);
 
     const newAuthor = new Auteur({ nomauteur: nomauteur, email: email, numtel: numtel });
 
@@ -34,11 +34,11 @@ export const createAuthor = async (req, res) => {
 }
 
 export const updateAuthor = async (req, res) => {
-    const { id } = req.params;
+    const { id } = escape(req.params);
     
-    const { nomauteur, email, numtel} = req.body;
+    const { nomauteur, email, numtel} = escape(req.body);
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas d'auteur avec un id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("pas d'auteur avec un id: "+ escape(id));
 
     const auth = { nomauteur:nomauteur,email: email, numtel: numtel, _id: id };
 
