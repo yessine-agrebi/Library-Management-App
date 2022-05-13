@@ -1,6 +1,6 @@
 import Client from "../models/client.model.js";
 import mongoose from "mongoose";
-
+import { escape } from "html-escaper";
 export const getClients = async (req, res) => {
     try {
         const client = await Client.find();
@@ -21,7 +21,7 @@ export const getOneClient = async (req, res) => {
 }
 
 export const createClient = async (req, res) => {
-    const client = req.body;
+    const client = escape(req.body);
     const newClient = new Client({...client});
     try {
         await newClient.save();
@@ -32,9 +32,9 @@ export const createClient = async (req, res) => {
 }
 
 export const updateClient = async (req, res) => {
-    const { id } = req.params;
+    const { id } = escape(req.params);
     
-    const client = req.body;
+    const client = escape(req.body);
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas de client avec un id: ${id}`);
 
