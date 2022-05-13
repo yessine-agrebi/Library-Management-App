@@ -1,5 +1,6 @@
 import Specialite from "../models/specialite.model.js";
 import mongoose from "mongoose";
+import { escape } from "html-escaper";
 
 export const getSpecialites = async (req, res) => {
     try{
@@ -20,7 +21,7 @@ export const getOneSpecialite = async (req, res) => {
 }
 
 export const createSpecialite = async (req, res) => {
-    const specialite = req.body;
+    const specialite = escape(req.body);
     const newspecialite = new Specialite({...specialite});
     try {
         await newspecialite.save();
@@ -31,11 +32,11 @@ export const createSpecialite = async (req, res) => {
 }
 
 export const updateSpecialite = async (req, res) => {
-    const { id } = req.params;
+    const { id } = escape(req.params);
     
-    const specialite = req.body;
+    const specialite = escape(req.body);
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas de specialite avec un id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("pas de specialite avec un id: " + escape(id));
 
     const spec = { ...specialite , _id: id };
 
