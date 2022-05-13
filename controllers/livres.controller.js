@@ -1,6 +1,6 @@
 import livres from "../models/livres.model.js";
 import mongoose from "mongoose";
-
+import { escape } from "html-escaper";
 export const getLivres = async (req, res) => {
     try {
         const livre = await livres.find().populate('auteurs').populate('specialite').populate('maised', '-siteweb -email');
@@ -20,7 +20,7 @@ export const getOneLivre = async (req, res) => {
 }
 
 export const createLivre = async (req, res) => {
-    const livre = req.body;
+    const livre = escape(req.body);
     const newLivre = new livres({...livre});
     try {
         await newLivre.save();
@@ -31,11 +31,11 @@ export const createLivre = async (req, res) => {
 }
 
 export const updateLivre = async (req, res) => {
-    const { id } = req.params;
+    const { id } = escape(req.params);
     
-    const livre = req.body;
+    const livre = escape(req.body);
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas de livre avec un id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("pas de livre avec un id: " + escape(id));
 
     const liv = { ...livre , _id: id };
 
