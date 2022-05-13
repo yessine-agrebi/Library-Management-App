@@ -1,6 +1,6 @@
 import User from "../models/users.model.js";
 import mongoose from "mongoose";
-
+import { escape } from "html-escaper";
 
 export const getUsers = async (req, res) => {
     try {
@@ -31,7 +31,7 @@ export const deleteUser = async (req, res) => {
 }
 
 export const addUser = async (req, res) => {
-    const {nom, email, password} = req.body;
+    const {nom, email, password} = escape(req.body);
     const newUser = new User({nom: nom, email: email, password: password});
     try{
         await newUser.save();
@@ -42,8 +42,8 @@ export const addUser = async (req, res) => {
 }
 
 export const upadateUser = async (req, res) => {
-    const {id} = req.params;
-    const {nom, email, password} = req.body;
+    const {id} = escape(req.params);
+    const {nom, email, password} = escape(req.body);
 
     if(!mongoose.Types.ObjectId.isValid(id))return res.status(404).send(`pas d'utilisateur avec un id: ${id}`);
     
