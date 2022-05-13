@@ -45,7 +45,7 @@ export const upadateUser = async (req, res) => {
     const {id} = escape(req.params);
     const {nom, email, password} = escape(req.body);
 
-    if(!mongoose.Types.ObjectId.isValid(id))return res.status(404).send(`pas d'utilisateur avec un id: ${id}`);
+    if(!mongoose.Types.ObjectId.isValid(id))return res.status(404).send("pas d'utilisateur avec un id: " + escape(id));
     
     const us = {nom: nom, email: email, password: password, _id: id};
 
