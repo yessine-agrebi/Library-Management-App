@@ -36,7 +36,7 @@ export const updateClient = async (req, res) => {
     
     const client = escape(req.body);
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas de client avec un id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("pas de client avec un id: " + escape(id));
 
     const cl = { ...client , _id: id };
 
