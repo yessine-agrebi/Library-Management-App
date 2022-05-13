@@ -1,6 +1,6 @@
 import editeurs from "../models/editeurs.model.js";
 import mongoose from "mongoose";
-
+import { escape } from "html-escaper";
 export const getEditeur = async (req, res) => {
     try {
         const liv = await editeurs.find();
@@ -20,7 +20,7 @@ export const getOneEditeur = async (req, res) => {
 }
 
 export const createEditeur = async (req, res) => {
-    const editeur = req.body;
+    const editeur = escape(req.body);
     const newEditeur = new editeurs({...editeur});
     try {
         await newEditeur.save();
@@ -31,11 +31,11 @@ export const createEditeur = async (req, res) => {
 }
 
 export const updateEditeur = async (req, res) => {
-    const { id } = req.params;
+    const { id } = escape(req.params);
     
-    const editeur = req.body;
+    const editeur = escape(req.body);
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas d'editeur avec un id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("pas d'editeur avec un id: " + escape(id));
 
     const cl = { ...editeur , _id: id };
 
