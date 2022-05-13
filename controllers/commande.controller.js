@@ -1,6 +1,6 @@
 import Commande from "../models/commande.model.js";
 import mongoose from "mongoose";
-
+import { escape } from "html-escaper";
 
 export const getCommandes = async (req, res) => {
     try {
@@ -21,7 +21,7 @@ export const getOneCommande = async (req, res) => {
 }
 
 export const createCommande = async (req, res) => {
-    const commande = req.body;
+    const commande = escape(req.body);
     const newCommande = new Commande({...commande});
     try {
         await newCommande.save();
@@ -32,9 +32,9 @@ export const createCommande = async (req, res) => {
 }
 
 export const updateCommande = async (req, res) => {
-    const { id } = req.params;
+    const { id } = escape(req.params);
     
-    const commande = req.body;
+    const commande = escape(req.body);
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas de commande avec un id: ${id}`);
 
