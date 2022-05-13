@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { ListLivresComponent } from './livres/list-livres/list-livres.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     HomeComponent,
     SignupComponent,
     ListLivresComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
