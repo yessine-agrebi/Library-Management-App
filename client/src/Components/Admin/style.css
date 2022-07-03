@@ -1,0 +1,36 @@
+.stylediv
+{
+    
+    width: 200px;
+    height: 50px;
+    margin: 0 auto;
+   text-align: center;
+   align-items: center;
+   padding-top: 1.5rem;
+   padding-bottom: 1.5rem; 
+}
+.exemple:hover {
+    background: #edf2f7;
+}
+.stylepop{
+    position: absolute;
+    top:100px; 
+  
+    max-width: 100%;
+}
+.divdashboard{
+    position:absolute;
+    top:100px;
+    left:250px;
+    width:80%
+}
+.containerst{
+   background-color: #FCFAF9;
+    height:170px;
+     width:1040px
+}
+.cardstyle{
+     height: 160px;
+      width: 255px;
+      background-color:#c43c1a 
+}
