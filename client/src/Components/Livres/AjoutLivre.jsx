@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Button from '@mui/material/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {useDispatch, useSelector} from "react-redux";
-import { addLivre, getLivres } from "../../features/livreSlice";
+import { getLivres } from "../../features/livreSlice";
 import  axios  from "axios";
 import { Form } from "react-bootstrap";
 import { getAuteurs} from "../../features/auteursSlice";
@@ -22,21 +22,19 @@ const [prix, setPrix] = useState("");
 const [auteurs, setAuteurs] = useState([]);
 const [maisonedit, setMaisonEdit] = useState("")
 const [specialite, setSpecialite] = useState("")
-{/* Global States */}
+//Global States
 const {authors} = useSelector((state) => state.authors);
 const {editeurs} = useSelector((state) => state.editeurs);
 const {specialites} = useSelector((state) => state.specialites);
 
-
-
-
+//fetch data
 const dispatch = useDispatch()
 useEffect(() => {
   dispatch(getAuteurs());
   dispatch(getEditeurs());
   dispatch(getSpecialites());
 }, [dispatch])
-
+// modals states
 const [openModalAuteur, setOpenModalAuteur] = useState();
 const [openModalEditeur, setopenModalEditeur] = useState();
 //open Modal
@@ -57,7 +55,7 @@ const handleCloseEditeur=()=>{
   setopenModalEditeur(false)
 }
 
-
+// send data to backend
 const send = async (event) => {
   event.preventDefault()
   const formData = new FormData();
@@ -77,20 +75,20 @@ const send = async (event) => {
   })
   dispatch(getLivres())
 }
-
+//change state auteurs
 const handleChange = (event) => {
   setAuteurs(auteurs => [...auteurs, event.target.value]);
 }
-
+//change state editeurs
 const handleChangeEditeurs = (event) => {
   setMaisonEdit(event.target.value)
   console.log(event.target.value)
 }
-
+// change state specialite
 const handleChangeSpec = (event) => {
   setSpecialite(event.target.value)
 }
-
+// image handler
 const handleFileChange = (e) => {
   setCouverture(e.target.files[0])
 }
@@ -141,7 +139,7 @@ return (
   {/* Authors   */}
   <Form.Group className="mb-3" controlId="formBasicQte">
     <Button variant="contained" color="success" style={{width: "150px", "margin-bottom": "5px"}} onClick={() =>handleOpen('auteur')} >
-        <AddCircleIcon/>
+        <AddCircleIcon className="me-1"/>
         Add Author
     </Button>
     <Form.Select aria-label="Default select example"  onChange={handleChange}>
@@ -160,7 +158,7 @@ return (
   {/* Editors */}
   <Form.Group className="mb-3" controlId="formBasicQte">
     <Button variant="contained" color="success" style={{width: "150px", "marginBottom": "5px"}} onClick={() =>handleOpen('editeur')}>
-        <AddCircleIcon/>
+        <AddCircleIcon className="me-1" />
         Add Editor
     </Button>
     <Form.Select aria-label="Default select example"  onChange={handleChangeEditeurs}>

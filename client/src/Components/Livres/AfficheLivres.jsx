@@ -12,7 +12,7 @@ import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { Button } from '@mui/material';
 import ModalLivre from './ModalLivre'
-
+import axios from "axios"
 
 
 
@@ -43,7 +43,6 @@ const AfficheLivres = () => {
             dispatch(deleteLivre(id));
         }
     }
-
     const columns = [
         {
             label: "ISBN",
@@ -58,9 +57,10 @@ const AfficheLivres = () => {
             name:"couverture",
             options: {
               customBodyRender : (rowdata) => (
+                
                 <img
                   style={{ height: 150, width : 100, borderRadius: '10%' }}
-                  src= {`images/${rowdata}`}
+                  src= {`${rowdata}`}
                   alt=""
                 />
               )
@@ -132,8 +132,8 @@ const AfficheLivres = () => {
             />
             )}
         </div>
-        <Button variant="contained" color="primary" style={{'marginLeft': 0}} onClick={handleOpen}>
-        <AddCircleRoundedIcon style={{ fontSize: "20px"}}/>
+        <Button variant="contained" color="primary" style={{'marginLeft': 10}} onClick={handleOpen}>
+        <AddCircleRoundedIcon style={{ fontSize: "20px", }} className="me-2"/>
             Ajout Livre
         </Button>
         <div style={{margin:10}}>

@@ -21,7 +21,7 @@ export const getOneLivre = async (req, res) => {
 }
 
 export const createLivre = async (req, res, next) => { 
-    const url = req.protocol + '://' + req.get('host') + '/'
+    const url = req.protocol + '://' + req.get('host') + '/public/images/'
     const couv = req.file.filename
     const newLivre = new livres({ 
         isbn:req.body.isbn,

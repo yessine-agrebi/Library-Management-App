@@ -1,13 +1,10 @@
 .stylediv
 {
-    
     width: 200px;
     height: 50px;
-    margin: 0 auto;
-   text-align: center;
-   align-items: center;
-   padding-top: 1.5rem;
-   padding-bottom: 1.5rem; 
+    text-align: center;
+    align-items: center;
+   
 }
 .exemple:hover {
     background: #edf2f7;
