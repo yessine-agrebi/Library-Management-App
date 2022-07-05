@@ -41,7 +41,6 @@ const AfficheLivres = () => {
     const handleDelete = (id) => {
         if(window.confirm("Delete Book Yes/No")){
             dispatch(deleteLivre(id));
-            navigate("/livres")
         }
     }
 

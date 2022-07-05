@@ -92,6 +92,7 @@ export const auteurSlice = createSlice({
     removeSelectedAuteur: (state) => {
         state.success = null
         state.error = null
+        
     }
   },
   extraReducers: {

@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import bodyParser from "body-parser"
 
 import livreRouter from "./routes/livres.route.js";
 import editeurRouter from "./routes/editeurs.route.js";
@@ -14,9 +15,13 @@ import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth.js"
 dotenv.config();
 const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 const db = process.env.DATABASE;
 const port = process.env.PORT;
-app.use(express.json());
+//app.use(express.json());
 app.use(cookieParser())
 app.use(cors());
 mongoose.connect(db, {
@@ -25,7 +30,8 @@ mongoose.connect(db, {
 }).then(() => console.log("database connected successfully")).catch(err => {console.log("Connection to database rejected", err);
 process.exit();
 });
-
+app.use('/public', express.static('public'));
+app.use('/uploads', express.static('images'));
 app.use("/api/auth", authRoute);
 app.use("/api/livres", livreRouter);
 app.use("/api/editeurs", editeurRouter);

@@ -4,7 +4,7 @@ import { escape } from "html-escaper";
 
 export const getLivres = async (req, res) => {
     try {
-        const livre = await livres.find().populate('auteurs').populate('specialite').populate('maised', '-siteweb -email');
+        const livre = await livres.find().populate('auteurs').populate('specialite').populate('maisonedit', '-siteweb -email');
         res.status(200).json(livre);
     }catch(error){
         res.status(404).json({message: error.message});
@@ -21,10 +21,19 @@ export const getOneLivre = async (req, res) => {
 }
 
 export const createLivre = async (req, res, next) => { 
-    const { isbn,titre,annedition,prix,qtestock,specialite,maised,auteurs } = req.body;
-    const {couverture} = req.file;
-    
-    const newLivre = new livres({ isbn:isbn,titre:titre,annedition:annedition,prix:prix,qtestock:qtestock,couverture:couverture,specialite:specialite,maised:maised,auteurs:auteurs })
+    const url = req.protocol + '://' + req.get('host') + '/'
+    const couv = req.file.filename
+    const newLivre = new livres({ 
+        isbn:req.body.isbn,
+        titre:req.body.titre,
+        prix:req.body.prix,
+        annedition:req.body.annedition,
+        couverture:url + couv,
+        qtestock:req.body.qtestock,
+        auteurs:req.body.auteurs,
+        maisonedit:req.body.maisonedit,
+        specialite:req.body.specialite
+    })
 
     try {  
         await newLivre.save();

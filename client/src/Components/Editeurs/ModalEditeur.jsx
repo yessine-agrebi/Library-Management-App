@@ -1,7 +1,6 @@
 import { Box, Modal, Typography } from "@mui/material";
 import React from 'react'
-import ModifAuteur from './ModifAuteur';
-import AjoutAuteur from './AjoutAuteur'
+import AjoutEditeur from "./AjoutEditeur"
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 const style = {
     position: 'absolute',
@@ -14,12 +13,12 @@ const style = {
     boxShadow: 24,
     p: 4,
   };
-const ModalAuteur = (props) => {
+const ModalEditeur = (props) => {
   return (
     <div>
       <Modal
         open={props.open}
-        onClose={props.handleCloseAuteur}
+        onClose={props.handleCloseEditeur}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -27,13 +26,13 @@ const ModalAuteur = (props) => {
       <div style={{ textAlign: 'right' }}>
 <span
 style={{ cursor: 'pointer'}}
-onClick={props.handleCloseAuteur}
+onClick={props.handleCloseEditeur}
 >
 <CancelRoundedIcon style={{ fontSize: "40px"}} />
 </span>
 </div>
       <Typography>
-<AjoutAuteur handleClose={props.handleCloseAuteur} />
+<AjoutEditeur handleClose={props.handleCloseEditeur} />
 </Typography>
       </Box>
         </Modal>
@@ -41,4 +40,4 @@ onClick={props.handleCloseAuteur}
   )
 }
 
-export default ModalAuteur
+export default ModalEditeur

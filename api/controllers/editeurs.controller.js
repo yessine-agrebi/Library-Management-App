@@ -20,13 +20,16 @@ export const getOneEditeur = async (req, res) => {
 }
 
 export const createEditeur = async (req, res) => {
-    const editeur = escape(req.body);
-    const newEditeur = new editeurs({...editeur});
-    try {
+    const { maisonedit, siteweb, email } = req.body;
+    
+    const newEditeur = new editeurs({ maisonedit:maisonedit, siteweb:siteweb, email:email })
+
+    try {  
         await newEditeur.save();
-        res.status(201).json(newEditeur);
-    }catch(error){
-        res.status(409).json({message: error.message});
+
+        res.status(201).json(newEditeur );
+    } catch (error) {
+        res.status(409).json({ message: error.message });
     }
 }
 

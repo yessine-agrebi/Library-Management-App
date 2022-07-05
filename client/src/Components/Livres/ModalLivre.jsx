@@ -8,11 +8,14 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    overflow: 'scroll',
     width: 400,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
+    height:'100%',
+    display:'block'
   };
 const ModalLivre = (props) => {
   return (
