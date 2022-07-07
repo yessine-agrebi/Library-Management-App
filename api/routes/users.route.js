@@ -1,17 +1,9 @@
-import express from "express";
-import { getOneUser, getUsers, deleteUser, addUser, upadateUser } from "../controllers/users.controller.js";
-import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
-
+import express from 'express';
+import { createUser, getuserBYEmail,getusers } from '../controllers/users.controller.js';
 const router = express.Router();
-
-router.get('/',verifyAdmin, getUsers);
-router.get('/:id',verifyUser, getOneUser);
-router.delete('/:id',verifyUser, deleteUser);
-router.put('/:id',verifyUser, upadateUser);
-router.post('/',verifyAdmin, addUser);
-
-
-
-
+router.post('/register', createUser);
+// localhost:3001/api/users/login
+router.post('/login', getuserBYEmail);
+router.get('/', getusers);
 
 export default router;

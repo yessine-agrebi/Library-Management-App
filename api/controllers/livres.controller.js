@@ -21,14 +21,14 @@ export const getOneLivre = async (req, res) => {
 }
 
 export const createLivre = async (req, res, next) => { 
-    const url = req.protocol + '://' + req.get('host') + '/public/images/'
+    //const url = req.protocol + '://' + req.get('host') + '/public/images/'
     const couv = req.file.filename
     const newLivre = new livres({ 
         isbn:req.body.isbn,
         titre:req.body.titre,
         prix:req.body.prix,
         annedition:req.body.annedition,
-        couverture:url + couv,
+        couverture:couv,
         qtestock:req.body.qtestock,
         auteurs:req.body.auteurs,
         maisonedit:req.body.maisonedit,

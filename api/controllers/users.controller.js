@@ -1,54 +1,113 @@
-import User from "../models/users.model.js";
-import mongoose from "mongoose";
-import { escape } from "html-escaper";
+import User from '../models/users.model.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
 
-export const getUsers = async (req, res) => {
-    try {
-        const users = await User.find();
-        res.status(200).json(users);
-    }catch {
-        res.status(404).json({message: error.message});
+export const createUser = async (req, res) => {
+  const { nom, email, password } = req.body;
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(password, salt);
+  const newUser = new User({
+    nom: nom,
+    email: email,
+    password: hash,
+  });
+
+  try {
+    await newUser.save();
+
+    res.status(201).json(newUser);
+  } catch (error) {
+    res.status(409).json({ message: error.message });
+  }
+};
+
+export const getusers = async (req, res) => {
+  try {
+    const user = await User.find().select('-password');
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+const generateAccessToken = (user) => {
+  return jwt.sign({ user }, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: '30s',
+  });
+};
+
+export const getuserBYEmail = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (user == '') {
+      res.status(401).send('utilisateur non existant');
+      return;
     }
-    
-}
 
-export const getOneUser = async (req, res) => {
-    try {
-        const user = await User.findById(req.params.id);
-        res.status(200).json(user);
-    }catch {
-        res.status(404).json({message: error.message});
-    }
-}
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) res.status(400).json({ msg: 'mot de passe incorrect' });
 
-export const deleteUser = async (req, res) => {
-    try {
-        const user = await User.findOneAndRemove(req.params.id);
-        res.status(200).json(user);
-    }catch {
-        res.status(404).json({message: error.message});
-    }
-}
+    //  if(user.isAdmin!="false") throw Error('Accès authorisé sauf pour admin');
 
-export const addUser = async (req, res) => {
-    const {nom, email, password} = escape(req.body);
-    const newUser = new User({nom: nom, email: email, password: password});
-    try{
-        await newUser.save();
-        res.status(201).json(newUser);
-    }catch(error){
-        res.status(409).json({ message: error.message });
-    }
-}
+    const accessToken = generateAccessToken(user);
 
-export const upadateUser = async (req, res) => {
-    const {id} = escape(req.params);
-    const {nom, email, password} = escape(req.body);
+    //   const refreshToken = generateRefreshToken(user);
 
-    if(!mongoose.Types.ObjectId.isValid(id))return res.status(404).send("pas d'utilisateur avec un id: " + escape(id));
-    
-    const us = {nom: nom, email: email, password: password, _id: id};
+    res.status(200).json({
+      accessToken,
+      //   refreshToken
+    });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
 
-    await User.findByIdAndUpdate(req.params.id, us);
-    res.json(us);
-}
+//   export const getuserBYEmailUser = async (req, res) => {
+//     try {
+//         const{email,password}=req.body;
+//         const user = await User.findOne({email});
+//        if(!user){  res.status(400).send('utilisateur non existant');
+//         return} ;
+
+//         const isMatch=await bcrypt.compare(password,user.password);
+
+//        if(!isMatch) {res.status(400).json({msg:'mot de passe incorrect'})
+//        return
+//       }
+
+//         const accessToken = generateAccessToken(user);
+//         // const refreshToken = generateRefreshToken(user);
+//        res.status(200).json({
+//         accessToken,
+//         // refreshToken
+//       })
+//     } catch (error) {
+//         res.status(404).json({ message: error.message });
+//     }
+// }
+// Refresh
+// function generateRefreshToken(user) {
+//   return jwt.sign({user}, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '1y' });
+// }
+
+// export const RefreshToken = async (req, res) => {
+//   try {
+//       const{email,password}=req.body;
+//       const user = await User.findOne({email});
+//      if(user==""){  res.status(404).send('utilisateur non existant');
+//       return} ;
+//       const isMatch=await bcrypt.compare(password,user.password);
+//        if(!isMatch) {res.status(400).json({msg:'mot de passe incorrect'})
+//        return} ;
+
+//       const refreshedToken = generateAccessToken(user);
+//       res.status(200).json({
+//              accessToken: refreshedToken,
+//           })
+//   } catch (error) {
+//       res.status(404).json({ message: error.message });
+//   }
+
+// };

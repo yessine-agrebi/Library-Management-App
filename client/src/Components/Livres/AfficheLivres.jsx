@@ -43,6 +43,7 @@ const AfficheLivres = () => {
             dispatch(deleteLivre(id));
         }
     }
+    const url_imgs = "http://localhost:3001/public/images/";
     const columns = [
         {
             label: "ISBN",
@@ -60,7 +61,7 @@ const AfficheLivres = () => {
                 
                 <img
                   style={{ height: 150, width : 100, borderRadius: '10%' }}
-                  src= {`${rowdata}`}
+                  src= {`${url_imgs}${rowdata}`}
                   alt=""
                 />
               )

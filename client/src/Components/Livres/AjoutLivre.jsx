@@ -6,8 +6,8 @@ import { getLivres } from "../../features/livreSlice";
 import  axios  from "axios";
 import { Form } from "react-bootstrap";
 import { getAuteurs} from "../../features/auteursSlice";
-import { getEditeurs } from "../../features/editeurSlice";
-import { getSpecialites } from "../../features/specialiteSlice";
+import { getEditeurByID, getEditeurs } from "../../features/editeurSlice";
+import { getSpecialiteByID, getSpecialites } from "../../features/specialiteSlice";
 import ModalAuteur from "../Auteurs/ModalAuteur";
 import ClearIcon from '@mui/icons-material/Clear';
 import ModalEditeur from "../Editeurs/ModalEditeur";
@@ -25,15 +25,17 @@ const [specialite, setSpecialite] = useState("")
 //Global States
 const {authors} = useSelector((state) => state.authors);
 const {editeurs} = useSelector((state) => state.editeurs);
+const {editeur} = useSelector((state) => state.editeurs);
 const {specialites} = useSelector((state) => state.specialites);
-
+const {spec} = useSelector((state) => state.specialites)
 //fetch data
 const dispatch = useDispatch()
 useEffect(() => {
   dispatch(getAuteurs());
   dispatch(getEditeurs());
   dispatch(getSpecialites());
-}, [dispatch])
+  
+}, [])
 // modals states
 const [openModalAuteur, setOpenModalAuteur] = useState();
 const [openModalEditeur, setopenModalEditeur] = useState();
@@ -82,11 +84,13 @@ const handleChange = (event) => {
 //change state editeurs
 const handleChangeEditeurs = (event) => {
   setMaisonEdit(event.target.value)
+  dispatch(getEditeurByID(event.target.value))
   console.log(event.target.value)
 }
 // change state specialite
 const handleChangeSpec = (event) => {
   setSpecialite(event.target.value)
+  dispatch(getSpecialiteByID(event.target.value))
 }
 // image handler
 const handleFileChange = (e) => {
@@ -167,10 +171,9 @@ return (
         return <option key={editeur._id} value={editeur._id}>{editeur.maisonedit}</option>
       }): "pas d'editeurs"}
     </Form.Select>
-    {maisonedit ? 
-    <Button key={maisonedit} variant="outlined" color="primary" className="d-flex mt-1"> {maisonedit} <ClearIcon></ClearIcon> </Button>
-    : ""
-    }
+    {editeur && maisonedit ? 
+        <Button key={editeur._id} variant="outlined" color="primary" className="d-flex mt-2"> {editeur.maisonedit} <ClearIcon onClick={(e) => setMaisonEdit("")}></ClearIcon> </Button>
+    : ""}
   </Form.Group>
   {/* Specialites */}
   <Form.Group>
@@ -180,10 +183,10 @@ return (
         return <option key={spec._id} value={spec._id}>{spec.nomspecialite}</option>
       }): "pas de specialites"}
     </Form.Select>
-    {specialite ? 
-    <Button key={specialite} variant="outlined" color="primary" className="d-flex mt-1"> {specialite} <ClearIcon></ClearIcon> </Button>
-    : ""
-    }
+    {spec && specialite ? 
+        <Button key={spec._id} variant="outlined" color="primary" className="d-flex mt-2"> {spec.nomspecialite} <ClearIcon onClick={(e) => setSpecialite("")}></ClearIcon> </Button>
+    : ""}
+
   </Form.Group>
   <Form.Group controlId="formFile" className="mt-2 mb-2">
     <Form.Control type="file" onChange={handleFileChange}/>

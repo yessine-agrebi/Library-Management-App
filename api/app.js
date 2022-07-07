@@ -31,7 +31,7 @@ mongoose.connect(db, {
 process.exit();
 });
 app.use('/public', express.static('public'));
-app.use('/uploads', express.static('images'));
+app.use('/images', express.static('images'));
 app.use("/api/auth", authRoute);
 app.use("/api/livres", livreRouter);
 app.use("/api/editeurs", editeurRouter);

@@ -83,9 +83,9 @@ export const SpecialiteSlice = createSlice({
   name: 'specialite',
   initialState: {
     specialites: [],
-    specialite: {},
+    spec: {},
     isLoading: false,
-    success: null,
+    success: false,
     error: null
   },
   reducers : {
@@ -98,31 +98,31 @@ export const SpecialiteSlice = createSlice({
     //get authors
     [getSpecialites.pending]:(state, action) => {
         state.isLoading = true;
-        state.success = null;
+        state.success = false;
     },
     [getSpecialites.fulfilled]:(state, action) => {
         state.isLoading = false;
-        state.success = action.payload;
+        state.success = true;
         state.specialites = action.payload;
     },
     [getSpecialites.rejected]: (state, action) => {
         state.isLoading=false;
-        state.success=action.payload;
+        state.error=action.payload;
         console.log("impossible de se connecter au serveur")
     },
     //get >Specialite by ID
     [getSpecialiteByID.pending]:(state, action) => {
         state.isLoading = true;
-        state.success = null;
+        state.success = false;
     },
     [getSpecialiteByID.fulfilled]:(state, action) => {
         state.isLoading = false;
-        state.success = action.payload;
-        state.specialite = action.payload;
+        state.success = true;
+        state.spec = action.payload;
     },
     [getSpecialiteByID.rejected]: (state, action) => {
         state.isLoading=false;
-        state.success=action.payload;
+        state.error=action.payload;
         console.log("Pas d'Specialites")
     },
     //add >Specialite
@@ -133,11 +133,12 @@ export const SpecialiteSlice = createSlice({
     [addSpecialite.fulfilled]:(state, action) => {
         state.Specialites.push(action.payload);
         state.isLoading = false;
-        state.success = action.payload;
+        state.success = true;
     },
     [addSpecialite.rejected]: (state, action) => {
         state.isLoading=false;
-        state.success=action.payload;
+        state.success = false
+        state.error=action.payload;
     },
     // update >Specialite
     [updateSpecialite.pending]:(state, action) => {
@@ -146,27 +147,27 @@ export const SpecialiteSlice = createSlice({
     },
     [updateSpecialite.fulfilled]:(state, action) => {
         state.isLoading = false;
-        state.success = action.payload;
+        state.success = true;
         state.specialites = state.specialites.map(item => item._id === action.payload._id ? action.payload : item)
     },
     [updateSpecialite.rejected]: (state, action) => {
         state.isLoading=false;
-        state.success=action.payload;
+        state.error=action.payload;
     },
     // delete >Specialite
     [deleteSpecialite.pending]: (state, action) => {
         state.isLoading=true;
-        state.status=null; 
+        state.success=false; 
     },
     [deleteSpecialite.fulfilled]: (state, action) => {
-        state.isLoading=false;
-        state.status=action.payload; 
+        state.isLoading= false;
+        state.success= true; 
         state.specialites=state.specialites.filter((item)=>
         item._id!==action.payload)
     },
     [deleteSpecialite.rejected]: (state, action) => {
         state.isLoading=false;
-        state.status=action.payload; 
+        state.error=action.payload; 
     },
 
   }
