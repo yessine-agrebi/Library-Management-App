@@ -20,6 +20,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import PersonIcon from '@mui/icons-material/Person';
+import BusinessIcon from '@mui/icons-material/Business';
 import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
@@ -132,7 +133,7 @@ const navigate = useNavigate()
           <Divider />
           <List component="nav">
           <React.Fragment>
-    <ListItemButton>
+    <ListItemButton onClick={() => navigate('/')}>
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
@@ -150,6 +151,13 @@ const navigate = useNavigate()
         <RateReviewIcon />
       </ListItemIcon>
       <ListItemText primary="Authors" />
+    </ListItemButton>
+
+    <ListItemButton onClick={() => navigate('/admin/editeurs')}>
+      <ListItemIcon>
+        <BusinessIcon />
+      </ListItemIcon>
+      <ListItemText primary="Editors" />
     </ListItemButton>
 
     <ListItemButton>
