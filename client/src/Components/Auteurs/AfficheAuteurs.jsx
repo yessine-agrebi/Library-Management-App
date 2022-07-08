@@ -1,79 +1,62 @@
 import React, {useState} from 'react'
-import { removeSelectedLivre } from '../../features/livreSlice'
+import { removeSelectedAuteur } from '../../features/auteursSlice'
 import MUIDataTable from "mui-datatables";
 import { ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/material/styles";
 import ReactLoading from 'react-loading';
 import {useNavigate } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
-import {deleteLivre} from "../../features/livreSlice";
+import {deleteAuteur} from "../../features/auteursSlice";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 import { Button } from '@mui/material';
-import ModalLivre from './ModalLivre';
+import ModalAuteur from './ModalAuteur';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-
-const AfficheLivres = () => {
-    const [open, setOpen] = useState("");
+const AfficheAuteurs = () => {
+    const [open, setOpenModalAuteur] = useState("");
     const [_id, set_id] = useState("");
     const dispatch = useDispatch();
-    const {livres, isLoading, error} = useSelector((state) => state.livres);
+    const {authors, isLoading, error} = useSelector((state) => state.authors);
     //open Modal
     const handleOpen = () => {
-        setOpen(true);
+        setOpenModalAuteur(true);
     }
     //close Modal
+    const handleCloseAuteur=()=>{
+        setOpenModalAuteur(false)
+    }
     const handleClose=()=>{
-        setOpen(false)
+        setOpenModalAuteur(false)
         set_id("")
-        dispatch(removeSelectedLivre())
+        dispatch(removeSelectedAuteur())
     }
     // Edit Livre
-    const editLivre = (value) => {
-        setOpen(true);
+    const editAuteur = (value) => {
+        setOpenModalAuteur(true);
         set_id(value);
         console.log(value)
     }
     // delete livre
     const handleDelete = (id) => {
         if(window.confirm("Delete Book Yes/No")){
-            dispatch(deleteLivre(id));
+            dispatch(deleteAuteur(id));
         }
     }
-    const url_imgs = "http://localhost:3001/public/images/";
+
     const columns = [
         {
-            label: "ISBN",
-            name: "isbn"
+            label: "Nom Auteur",
+            name: "nomauteur"
         },
         {
-            label: "Title",
-            name: "titre"
+            label: "Email",
+            name: "email"
         },
         {
-            label: "Cover",
-            name:"couverture",
-            options: {
-              customBodyRender : (rowdata) => (
-                
-                <img
-                  style={{ height: 150, width : 100, borderRadius: '10%' }}
-                  src= {`${url_imgs}${rowdata}`}
-                  alt=""
-                />
-              )
-              }
-            },
-        
-        {
-            label: "Price",
-            name: "prix"
-        },
-        {
-            label: "Qte Stock",
-            name: "qtestock"
+            label: "Num Tel",
+            name: "numtel"
         },
         {
             name: "_id",
@@ -82,13 +65,13 @@ const AfficheLivres = () => {
             customBodyRender: (value) => (
             <div>
             <span
-            onClick={()=>editLivre(value)}
+            onClick={()=>editAuteur(value)}
             style={{ cursor: 'pointer'}}
             >
             <VisibilityIcon color='primary' />
             </span>
             <span
-            onClick={()=>editLivre(value)}
+            onClick={()=>editAuteur(value)}
             style={{ cursor: 'pointer'}}
             >
             <NoteAltOutlinedIcon color='success' />
@@ -105,19 +88,19 @@ const AfficheLivres = () => {
             }
     ];
 
-    const renderBooks = () => {
+    const renderAuthors = () => {
         if(isLoading) return <center>
             <ReactLoading type='spokes' color='red'
                 height={'8%'} width={'8%'}
             />
         </center>
-        if(error) return <p>can't load books list..</p>
+        if(error) return <p>can't load authors list..</p>
 
         return <React.Fragment>
-            {livres ? <ThemeProvider theme={createTheme()}>
+            {authors ? <ThemeProvider theme={createTheme()}>
                 <MUIDataTable
                     title="Book List"
-                    data={livres}
+                    data={authors}
                     columns={columns}
                     options={{
                         rowsPerPageOptions:[5,10,15,100]
@@ -126,13 +109,12 @@ const AfficheLivres = () => {
             </ThemeProvider> : null}
         </React.Fragment>
     }
-
   return (
     <div style={{position: 'absolute','top':90,'left':250,width:'75%'}}>
         <div>
             {open && (
-            <ModalLivre
-            handleClose={handleClose}
+            <ModalAuteur
+            handleCloseAuteur={handleCloseAuteur}
             open={open}
             _id={_id}
             />
@@ -140,13 +122,13 @@ const AfficheLivres = () => {
         </div>
         <Button variant="contained" color="primary" style={{'marginLeft': 10}} onClick={handleOpen}>
         <AddCircleRoundedIcon style={{ fontSize: "20px", }} className="me-2"/>
-            Add Book
+            Add Author
         </Button>
         <div style={{margin:10}}>
-            {renderBooks()}
+            {renderAuthors()}
         </div>
     </div>
   )
 }
 
-export default AfficheLivres
+export default AfficheAuteurs

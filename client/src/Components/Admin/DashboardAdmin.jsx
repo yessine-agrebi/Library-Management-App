@@ -11,12 +11,17 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
-import { mainListItems} from './listItems';
-import ListLivres from '../Livres/ListLivres';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import PeopleIcon from '@mui/icons-material/People';
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
+import RateReviewIcon from '@mui/icons-material/RateReview';
+import PersonIcon from '@mui/icons-material/Person';
+import { ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 
 const drawerWidth = 240;
@@ -72,7 +77,7 @@ function DashboardContent() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
+const navigate = useNavigate()
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -126,7 +131,49 @@ function DashboardContent() {
           </Toolbar>
           <Divider />
           <List component="nav">
-            {mainListItems}
+          <React.Fragment>
+    <ListItemButton>
+      <ListItemIcon>
+        <DashboardIcon />
+      </ListItemIcon>
+      <ListItemText primary="Dashboard" />
+    </ListItemButton>
+    <ListItemButton onClick={() => navigate('/admin/livres')}>
+      <ListItemIcon>
+        <LibraryBooksIcon />
+      </ListItemIcon>
+      <ListItemText primary="Books" />
+    </ListItemButton>
+
+    <ListItemButton onClick={() => navigate('/admin/auteurs')}>
+      <ListItemIcon>
+        <RateReviewIcon />
+      </ListItemIcon>
+      <ListItemText primary="Authors" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <PersonIcon />
+      </ListItemIcon>
+      <ListItemText primary="Clients" />
+    </ListItemButton>
+
+    <ListItemButton>
+      <ListItemIcon>
+        <ShoppingCartIcon />
+      </ListItemIcon>
+      <ListItemText primary="Orders" />
+    </ListItemButton>
+    <ListItemButton>
+      <ListItemIcon>
+        <PeopleIcon />
+      </ListItemIcon>
+      <ListItemText primary="Customers" />
+    </ListItemButton>
+    
+    
+  </React.Fragment>
           </List>
         </Drawer>
         <Box
@@ -143,7 +190,7 @@ function DashboardContent() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-              <ListLivres />
+            
           </Container>
         </Box>
       </Box>

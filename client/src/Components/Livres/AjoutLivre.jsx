@@ -35,7 +35,9 @@ useEffect(() => {
   dispatch(getEditeurs());
   dispatch(getSpecialites());
   
-}, [])
+}, [dispatch])
+
+
 // modals states
 const [openModalAuteur, setOpenModalAuteur] = useState();
 const [openModalEditeur, setopenModalEditeur] = useState();

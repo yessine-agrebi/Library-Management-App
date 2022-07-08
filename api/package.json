@@ -5,8 +5,7 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "client": "cd ../client && npm start",
-    "start": "concurrently \"nodemon app \" \"npm run client \"",
+    "start": "nodemon app",
     "test": "npm test"
   },
   "repository": {
