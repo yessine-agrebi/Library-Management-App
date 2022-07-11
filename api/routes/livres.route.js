@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/', getLivres);
 router.get('/:id', getOneLivre);
 router.post('/', upload, createLivre);
-router.put('/:id', updateLivre);
+router.put('/:id', upload, updateLivre);
 router.delete('/:id', deleteLivre);
 
 

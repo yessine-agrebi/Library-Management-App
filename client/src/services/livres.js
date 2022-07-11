@@ -19,7 +19,7 @@ const deleteLivre = async (livreID) => {
 }
 
 const updateLivre = async (livre) => {
-    return await Api.put(LIVRES_API + "/" + livre._id);
+    return await Api.put(LIVRES_API + "/" + livre._id, livre);
 }
 
 

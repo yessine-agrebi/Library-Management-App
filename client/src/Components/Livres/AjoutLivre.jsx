@@ -73,8 +73,7 @@ const send = async (event) => {
   formData.append("maisonedit", maisonedit)
   formData.append("specialite", specialite)
   console.log(formData)
-  await axios.post("http://localhost:3001/api/livres", formData, {
-  }).then(res => {
+  await axios.post("http://localhost:3001/api/livres", formData).then(res => {
       console.log(res)
   })
   dispatch(getLivres())

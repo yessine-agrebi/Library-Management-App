@@ -9,10 +9,8 @@ const livreSchema = mongoose.Schema({
     prix: {type: Number, required: true},
     qtestock: {type: Number, required: true},
     couverture: {type: String, required: true},
-    
     specialite: {type: mongoose.Schema.Types.ObjectId,ref:Specialite, required: true},
-    
-    maisonedit: {type: mongoose.Schema.Types.ObjectId,ref:editeurs, required: true},
+    maised: {type: mongoose.Schema.Types.ObjectId,ref:editeurs, required: true},
     auteurs: {type: mongoose.Schema.Types.Array,ref:Auteur, required: true},
 
     

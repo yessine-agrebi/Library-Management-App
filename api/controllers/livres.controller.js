@@ -4,7 +4,7 @@ import { escape } from "html-escaper";
 
 export const getLivres = async (req, res) => {
     try {
-        const livre = await livres.find().populate('auteurs').populate('specialite').populate('maisonedit', '-siteweb -email');
+        const livre = await livres.find().populate('auteurs').populate('specialite').populate('maised');
         res.status(200).json(livre);
     }catch(error){
         res.status(404).json({message: error.message});
@@ -31,7 +31,7 @@ export const createLivre = async (req, res, next) => {
         couverture:couv,
         qtestock:req.body.qtestock,
         auteurs:req.body.auteurs,
-        maisonedit:req.body.maisonedit,
+        maised:req.body.maisonedit,
         specialite:req.body.specialite
     })
 
@@ -46,17 +46,26 @@ export const createLivre = async (req, res, next) => {
 }
 
 export const updateLivre = async (req, res) => {
-    const { id } = escape(req.params);
-    
-    const livre = escape(req.body);
-    
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send("pas de livre avec un id: " + escape(id));
+    const { id } = req.params;
+    const couv = req.file.filename
 
-    const liv = { ...livre , _id: id };
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas de livre avec un id: ${id}`);
 
-    await livres.findByIdAndUpdate(req.params.id, liv);
+    const liv1 = { 
+        isbn:req.body.isbn,
+        titre:req.body.titre,
+        annedition:req.body.annedition,
+        prix:req.body.prix,
+        qtestock:req.body.qtestock,
+        couverture: couv,
+        specialite:req.body.specialite,
+        maised:req.body.maised,
+        auteurs:req.body.auteurs,
+         _id: id };
 
-    res.json(liv);
+    await livres.findByIdAndUpdate(id, liv1);
+
+    res.json(liv1);
 };
 
 export const deleteLivre = async (req, res) => {
