@@ -46,7 +46,7 @@ const ModifLivre = (props) => {
     dispatch(getSpecialites());
     dispatch(getLivreByID(_id));
     console.log("the id is "+ _id)
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     setIsbn(livre.isbn);
@@ -59,7 +59,7 @@ const ModifLivre = (props) => {
     setMaisonEdit(livre.maised);
     setSpecialite(livre.specialite);
     console.log(auteurs)
-  }, [dispatch]);
+  }, []);
 
   // modals states
   const [openModalAuteur, setOpenModalAuteur] = useState();
@@ -118,6 +118,12 @@ const ModifLivre = (props) => {
   const handleFileChange = (e) => {
     setCouverture(e.target.files[0]);
   };
+  
+  const deleteSelectedAuthor = (auteur) => {
+    const selectedIndex = auteurs.indexOf(auteur._id);
+    setAuteurs((auteurs) => auteurs.splice(selectedIndex, 1))
+    console.log(auteurs)
+  }
 
   return (
     <div className="container">
@@ -220,6 +226,7 @@ const ModifLivre = (props) => {
                     variant="outlined"
                     color="primary"
                     className="d-flex mt-1"
+                    onClick={() => deleteSelectedAuthor(auteur) }
                   >
                     {auteur.nomauteur} <ClearIcon />
                   </Button>
@@ -260,9 +267,8 @@ const ModifLivre = (props) => {
               color="primary"
               className="d-flex mt-2"
             >
-              {" "}
-              {editeur.maisonedit}{" "}
-              <ClearIcon onClick={(e) => setMaisonEdit("")}></ClearIcon>{" "}
+              {editeur.maisonedit}
+              <ClearIcon onClick={(e) => setMaisonEdit("")}></ClearIcon>
             </Button>
           ) : (
             ""
