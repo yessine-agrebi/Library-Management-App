@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "61f5753539c374a91440ad64"
+  },
+  "nomauteur": "Salah Ben Mohamed",
+  "email": "salah@yahoo.fr",
+  "numtel": "29123456",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f7ef200fccc90df51599b9"
+  },
+  "nomauteur": "Samia Ben Salah",
+  "email": "sam@yahoo.fr",
+  "numtel": "98123456",
+  "__v": 0
+}]

@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "61f92fb6bb398ac28f467ca0"
+  },
+  "nom": "Mohamed Hachicha",
+  "email": "mohamed.hachicha@gmail.com",
+  "password": "$2b$10$ZshIkXtfNuO2mPOFKhwzh.JgkuvnMuzozx0bQi9HRsbae79yg5rIW",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f933047897b9e67149fa4e"
+  },
+  "nom": "Hassan Hachicha",
+  "email": "hsan.hachicha@gmail.com",
+  "password": "$2b$10$3MEzV.pJEZsevHYSDpumAe9KhQy9GKPXGn7lQs5ZGaBajueh7IWWa",
+  "__v": 0
+}]

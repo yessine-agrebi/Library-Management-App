@@ -1,0 +1,41 @@
+[{
+  "_id": {
+    "$oid": "61ffd5897990b7ab988eb382"
+  },
+  "nom": "Hassan Hachicha",
+  "adress": "Rue Kateb Yassine 3029 Sfax",
+  "email": "hsan.hachicha@gmail.com",
+  "password": "$2b$10$YidyiQQYZ38MqYoIx8d1re198MOwzxNs4WndZLRraaTB3CIrrdfHS",
+  "role": 1,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61ffd752b45d498bee925b51"
+  },
+  "nom": "Mohamed Ben Salah",
+  "adress": "Rue EFath 3000 Sfax",
+  "email": "mohamed.bs@gmail.com",
+  "password": "$2b$10$T8F3Al1vxcuRCRB1LQcSrOgcTAUSr9lGBqtN3Ztm0/P2hqYd7lhPa",
+  "role": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "620144f21ed973900fa36e3c"
+  },
+  "nom": "alia ben salem",
+  "adress": "sfax",
+  "email": "alia@gmail.com",
+  "password": "$2b$10$B6ENAaWoovTSR/Q25hPVM.5rc40vyoi2zh5z4cbtiTUm9EJfBPBd.",
+  "role": 0,
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6202231a386955db16bea5d2"
+  },
+  "nom": "Ben Salah Amin",
+  "adress": "rue les fleurs 3033 Sfax",
+  "email": "bsa@gmail.com",
+  "password": "$2b$10$YwA6cZau1MlR0jI5Cj5deOYw.x07vSeUrgvD26zOS/frDdSQ16CE2",
+  "role": 0,
+  "__v": 0
+}]

@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "61f7b1fe99e38381069d7571"
+  },
+  "maisonedit": "DUNOD",
+  "siteweb": "https://www.eyrolles.com",
+  "email": "eyrolles@domain.com",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "maisonedit": "ENI",
+  "siteweb": "https://www.eni.com",
+  "email": "eni@domain.com",
+  "__v": 0
+}]

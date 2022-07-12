@@ -1,0 +1,105 @@
+[{
+  "_id": {
+    "$oid": "62023e4a0363949b3d2e2233"
+  },
+  "quantitecommandee": 3,
+  "totligne": 165,
+  "refarticle": {
+    "$oid": "61fbd23b1a21b9b97263c1c5"
+  },
+  "refcommande": {
+    "$oid": "62023e4a0363949b3d2e2231"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62023e4a0363949b3d2e2235"
+  },
+  "quantitecommandee": 4,
+  "totligne": 200,
+  "refarticle": {
+    "$oid": "6200fc6dc0d1aa81e5de51a2"
+  },
+  "refcommande": {
+    "$oid": "62023e4a0363949b3d2e2231"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62023f2bc69514b0750f40bf"
+  },
+  "quantitecommandee": 4,
+  "totligne": 200,
+  "refarticle": {
+    "$oid": "6201007fa14f7cdc68502e42"
+  },
+  "refcommande": {
+    "$oid": "62023f2bc69514b0750f40bd"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62023f2bc69514b0750f40c1"
+  },
+  "quantitecommandee": 3,
+  "totligne": 60,
+  "refarticle": {
+    "$oid": "62010076a14f7cdc68502e40"
+  },
+  "refcommande": {
+    "$oid": "62023f2bc69514b0750f40bd"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62023f2bc69514b0750f40c3"
+  },
+  "quantitecommandee": 1,
+  "totligne": 33,
+  "refarticle": {
+    "$oid": "62010065a14f7cdc68502e3e"
+  },
+  "refcommande": {
+    "$oid": "62023f2bc69514b0750f40bd"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62028acec475648aa70dd400"
+  },
+  "quantitecommandee": 1,
+  "totligne": 20,
+  "refarticle": {
+    "$oid": "61fd54a9fa43840958f71ff6"
+  },
+  "refcommande": {
+    "$oid": "62028acec475648aa70dd3fe"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62028acec475648aa70dd402"
+  },
+  "quantitecommandee": 1,
+  "totligne": 55,
+  "refarticle": {
+    "$oid": "61fbd23b1a21b9b97263c1c5"
+  },
+  "refcommande": {
+    "$oid": "62028acec475648aa70dd3fe"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62028d2fc475648aa70dd420"
+  },
+  "quantitecommandee": 1,
+  "totligne": 55,
+  "refarticle": {
+    "$oid": "61fbd23b1a21b9b97263c1c5"
+  },
+  "refcommande": {
+    "$oid": "62028d2fc475648aa70dd41e"
+  },
+  "__v": 0
+}]

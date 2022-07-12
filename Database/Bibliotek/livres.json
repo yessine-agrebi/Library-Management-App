@@ -1,0 +1,346 @@
+[{
+  "_id": {
+    "$oid": "61fbd1711a21b9b97263c1bc"
+  },
+  "isbn": "42368756",
+  "titre": "ReactJS",
+  "annedition": 2021,
+  "prix": 33,
+  "qtestock": 0,
+  "couverture": "9782212677560_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    },
+    {
+      "$oid": "61f7ef200fccc90df51599b9"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fbd23b1a21b9b97263c1c5"
+  },
+  "isbn": "123698745",
+  "titre": "WordPress",
+  "annedition": 2020,
+  "prix": 55,
+  "qtestock": 4,
+  "couverture": "9782412068762_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bb1aa24ce52bccf1dd24"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f7ef200fccc90df51599b9"
+    },
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fd4953274b510bd944ee3b"
+  },
+  "isbn": "54894",
+  "titre": "Référencement",
+  "annedition": 64,
+  "prix": 55,
+  "qtestock": 0,
+  "couverture": "9782212679861_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61fd54a9fa43840958f71ff6"
+  },
+  "isbn": "5464sf",
+  "titre": "VueJS",
+  "annedition": 2020,
+  "prix": 20,
+  "qtestock": 18,
+  "couverture": "9782409029424_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7b1fe99e38381069d7571"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200fc6dc0d1aa81e5de51a2"
+  },
+  "isbn": "65465445",
+  "titre": "JAVA",
+  "annedition": 2020,
+  "prix": 50,
+  "qtestock": 0,
+  "couverture": "9782822407076_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7b1fe99e38381069d7571"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200fc97c0d1aa81e5de51ac"
+  },
+  "isbn": "54656514168",
+  "titre": "TypeScript",
+  "annedition": 2019,
+  "prix": 60,
+  "qtestock": 6,
+  "couverture": "tyupescriptreact.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7b1fe99e38381069d7571"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f7ef200fccc90df51599b9"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200fccfc0d1aa81e5de51b1"
+  },
+  "isbn": "684984684",
+  "titre": "React",
+  "annedition": 2018,
+  "prix": 40,
+  "qtestock": 4,
+  "couverture": "reactweb.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200fd0cc0d1aa81e5de51b7"
+  },
+  "isbn": "5646486",
+  "titre": "IA",
+  "annedition": 2020,
+  "prix": 70,
+  "qtestock": 4,
+  "couverture": "9782759825790_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200fd5cc0d1aa81e5de51bd"
+  },
+  "isbn": "123987",
+  "titre": "Big Data",
+  "annedition": 2019,
+  "prix": 80,
+  "qtestock": 4,
+  "couverture": "9782100778980_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200feb5c0d1aa81e5de51cc"
+  },
+  "isbn": "",
+  "titre": "Web App",
+  "annedition": 2019,
+  "prix": 20,
+  "qtestock": 0,
+  "couverture": "webapp.jpg",
+  "specialite": {
+    "$oid": "61f7bb1aa24ce52bccf1dd24"
+  },
+  "maised": {
+    "$oid": "61f7b1fe99e38381069d7571"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200fedac0d1aa81e5de51d6"
+  },
+  "isbn": "654698494",
+  "titre": "Agilité",
+  "annedition": 2019,
+  "prix": 20,
+  "qtestock": 0,
+  "couverture": "9782810431694_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7b1fe99e38381069d7571"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f7ef200fccc90df51599b9"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6200ff03c0d1aa81e5de51db"
+  },
+  "isbn": "5498484",
+  "titre": "Python",
+  "annedition": 2020,
+  "prix": 30,
+  "qtestock": 3,
+  "couverture": "9782100826063_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62010065a14f7cdc68502e3e"
+  },
+  "isbn": "42368756",
+  "titre": "Programmation",
+  "annedition": 2021,
+  "prix": 33,
+  "qtestock": 13,
+  "couverture": "9782340047761_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    },
+    {
+      "$oid": "61f7ef200fccc90df51599b9"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "62010076a14f7cdc68502e40"
+  },
+  "isbn": "42368756",
+  "titre": "IA",
+  "annedition": 2021,
+  "prix": 20,
+  "qtestock": 11,
+  "couverture": "9782416001055_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    },
+    {
+      "$oid": "61f7ef200fccc90df51599b9"
+    }
+  ],
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6201007fa14f7cdc68502e42"
+  },
+  "isbn": "42368756",
+  "titre": "Symfony",
+  "annedition": 2021,
+  "prix": 50,
+  "qtestock": 10,
+  "couverture": "9782409031588_internet_w290.jpg",
+  "specialite": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "maised": {
+    "$oid": "61f7ef3e0fccc90df51599bb"
+  },
+  "auteurs": [
+    {
+      "$oid": "61f5753539c374a91440ad64"
+    },
+    {
+      "$oid": "61f7ef200fccc90df51599b9"
+    }
+  ],
+  "__v": 0
+}]

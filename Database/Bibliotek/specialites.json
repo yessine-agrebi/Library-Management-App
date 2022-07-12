@@ -1,0 +1,13 @@
+[{
+  "_id": {
+    "$oid": "61f7bafca24ce52bccf1dd22"
+  },
+  "nomspecialite": "Informatique",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "61f7bb1aa24ce52bccf1dd24"
+  },
+  "nomspecialite": "Réseaux",
+  "__v": 0
+}]
