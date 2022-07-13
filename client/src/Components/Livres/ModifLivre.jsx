@@ -104,6 +104,8 @@ const ModifLivre = (props) => {
   };
   //change state auteurs
   const handleChange = (event) => {
+    console.log("event", auteurs);
+    console.log("value", event.target.value);
     setAuteurs((auteurs) => [...auteurs, event.target.value]);
   };
   //change state editeurs
@@ -131,10 +133,10 @@ const ModifLivre = (props) => {
       // only splice array when item is found
       auteurs.splice(index, 1); // 2nd parameter means remove one item only
     }
-    console.log("test");
-    console.log(auteurs);
+
     setAuteurs(auteurs);
-    console.log("new auterus", auteurs);
+    dispatch(getAuteurs());
+    //console.log("new auterus", auteurs);
   };
 
   return (
