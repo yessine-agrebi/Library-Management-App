@@ -19,6 +19,7 @@ import ModalAuteur from "../Auteurs/ModalAuteur";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModalEditeur from "../Editeurs/ModalEditeur";
 import { livreService } from "../../services/livres";
+import { auteurService } from "../../services/auteurs";
 
 const ModifLivre = (props) => {
   const [_id, set_id] = useState(props._id);
@@ -45,6 +46,10 @@ const ModifLivre = (props) => {
     dispatch(getEditeurs());
     dispatch(getSpecialites());
     dispatch(getLivreByID(_id));
+<<<<<<< HEAD
+=======
+    console.log("the id is " + _id);
+>>>>>>> 32b11f3e0eddfaf6f31c616c6610e4c90cb3ef5d
   }, []);
 
   useEffect(() => {
@@ -57,6 +62,10 @@ const ModifLivre = (props) => {
     setAuteurs(livre.auteurs);
     setMaisonEdit(livre.maised);
     setSpecialite(livre.specialite);
+<<<<<<< HEAD
+=======
+    console.log(auteurs);
+>>>>>>> 32b11f3e0eddfaf6f31c616c6610e4c90cb3ef5d
   }, []);
 
   // modals states
@@ -101,6 +110,8 @@ const ModifLivre = (props) => {
   };
   //change state auteurs
   const handleChange = (event) => {
+    console.log("event", auteurs);
+    console.log("value", event.target.value);
     setAuteurs((auteurs) => [...auteurs, event.target.value]);
   };
   //change state editeurs
@@ -120,6 +131,7 @@ const ModifLivre = (props) => {
   };
 
   const deleteSelectedAuthor = (auteur) => {
+<<<<<<< HEAD
     const array = [...auteurs] // make a separate copy of the array
     var index = array.indexOf(auteur);
     if(index > -1) {
@@ -128,6 +140,20 @@ const ModifLivre = (props) => {
     console.log(index)
     setAuteurs(array);
     dispatch(getAuteurs())
+=======
+    const index = auteurs.findIndex((object) => {
+      //console.log(object._id);
+      return object._id === auteur._id;
+    });
+    if (index > -1) {
+      // only splice array when item is found
+      auteurs.splice(index, 1); // 2nd parameter means remove one item only
+    }
+
+    setAuteurs(auteurs);
+    dispatch(getAuteurs());
+    //console.log("new auterus", auteurs);
+>>>>>>> 32b11f3e0eddfaf6f31c616c6610e4c90cb3ef5d
   };
 
   return (
