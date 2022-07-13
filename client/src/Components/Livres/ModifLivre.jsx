@@ -19,6 +19,7 @@ import ModalAuteur from "../Auteurs/ModalAuteur";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModalEditeur from "../Editeurs/ModalEditeur";
 import { livreService } from "../../services/livres";
+import { auteurService } from "../../services/auteurs";
 
 const ModifLivre = (props) => {
   const [_id, set_id] = useState(props._id);
@@ -45,7 +46,7 @@ const ModifLivre = (props) => {
     dispatch(getEditeurs());
     dispatch(getSpecialites());
     dispatch(getLivreByID(_id));
-    console.log("the id is "+ _id)
+    console.log("the id is " + _id);
   }, []);
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const ModifLivre = (props) => {
     setAuteurs(livre.auteurs);
     setMaisonEdit(livre.maised);
     setSpecialite(livre.specialite);
-    console.log(auteurs)
+    console.log(auteurs);
   }, []);
 
   // modals states
@@ -84,7 +85,7 @@ const ModifLivre = (props) => {
   const send = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("_id", _id)
+    formData.append("_id", _id);
     formData.append("isbn", isbn);
     formData.append("titre", titre);
     formData.append("prix", prix);
@@ -94,9 +95,11 @@ const ModifLivre = (props) => {
     formData.append("auteurs", auteurs);
     formData.append("maised", maised);
     formData.append("specialite", specialite);
-    await axios.put("http://localhost:3001/api/livres/" + livre._id, formData).then(res => {
-      console.log(res.data)
-  });
+    await axios
+      .put("http://localhost:3001/api/livres/" + livre._id, formData)
+      .then((res) => {
+        console.log(res.data);
+      });
     dispatch(getLivres());
   };
   //change state auteurs
@@ -118,12 +121,21 @@ const ModifLivre = (props) => {
   const handleFileChange = (e) => {
     setCouverture(e.target.files[0]);
   };
-  
+
   const deleteSelectedAuthor = (auteur) => {
-    const selectedIndex = auteurs.indexOf(auteur._id);
-    setAuteurs((auteurs) => auteurs.splice(selectedIndex, 1))
-    console.log(auteurs)
-  }
+    const index = auteurs.findIndex((object) => {
+      //console.log(object._id);
+      return object._id === auteur._id;
+    });
+    if (index > -1) {
+      // only splice array when item is found
+      auteurs.splice(index, 1); // 2nd parameter means remove one item only
+    }
+    console.log("test");
+    console.log(auteurs);
+    setAuteurs(auteurs);
+    console.log("new auterus", auteurs);
+  };
 
   return (
     <div className="container">
@@ -226,7 +238,7 @@ const ModifLivre = (props) => {
                     variant="outlined"
                     color="primary"
                     className="d-flex mt-1"
-                    onClick={() => deleteSelectedAuthor(auteur) }
+                    onClick={() => deleteSelectedAuthor(auteur)}
                   >
                     {auteur.nomauteur} <ClearIcon />
                   </Button>
