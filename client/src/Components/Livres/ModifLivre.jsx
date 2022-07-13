@@ -28,7 +28,7 @@ const ModifLivre = (props) => {
   const [qtestock, setQteStock] = useState("");
   const [annedition, setAnnedition] = useState();
   const [prix, setPrix] = useState("");
-  const [auteurs, setAuteurs] = useState([]);
+  const [auteurs, setAuteurs] = useState([{}]);
   const [maised, setMaisonEdit] = useState("");
   const [specialite, setSpecialite] = useState("");
   //Global States
@@ -45,7 +45,6 @@ const ModifLivre = (props) => {
     dispatch(getEditeurs());
     dispatch(getSpecialites());
     dispatch(getLivreByID(_id));
-    console.log("the id is "+ _id)
   }, []);
 
   useEffect(() => {
@@ -58,7 +57,6 @@ const ModifLivre = (props) => {
     setAuteurs(livre.auteurs);
     setMaisonEdit(livre.maised);
     setSpecialite(livre.specialite);
-    console.log(auteurs)
   }, []);
 
   // modals states
@@ -84,7 +82,7 @@ const ModifLivre = (props) => {
   const send = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("_id", _id)
+    formData.append("_id", _id);
     formData.append("isbn", isbn);
     formData.append("titre", titre);
     formData.append("prix", prix);
@@ -94,9 +92,11 @@ const ModifLivre = (props) => {
     formData.append("auteurs", auteurs);
     formData.append("maised", maised);
     formData.append("specialite", specialite);
-    await axios.put("http://localhost:3001/api/livres/" + livre._id, formData).then(res => {
-      console.log(res.data)
-  });
+    await axios
+      .put("http://localhost:3001/api/livres/" + livre._id, formData)
+      .then((res) => {
+        console.log(res.data);
+      });
     dispatch(getLivres());
   };
   //change state auteurs
@@ -118,12 +118,17 @@ const ModifLivre = (props) => {
   const handleFileChange = (e) => {
     setCouverture(e.target.files[0]);
   };
-  
+
   const deleteSelectedAuthor = (auteur) => {
-    const selectedIndex = auteurs.indexOf(auteur._id);
-    setAuteurs((auteurs) => auteurs.splice(selectedIndex, 1))
-    console.log(auteurs)
-  }
+    const array = [...auteurs] // make a separate copy of the array
+    var index = array.indexOf(auteur);
+    if(index > -1) {
+      array.splice(index, 1); //remove
+    }
+    console.log(index)
+    setAuteurs(array);
+    dispatch(getAuteurs())
+  };
 
   return (
     <div className="container">
@@ -226,7 +231,7 @@ const ModifLivre = (props) => {
                     variant="outlined"
                     color="primary"
                     className="d-flex mt-1"
-                    onClick={() => deleteSelectedAuthor(auteur) }
+                    onClick={() => deleteSelectedAuthor(auteur)}
                   >
                     {auteur.nomauteur} <ClearIcon />
                   </Button>

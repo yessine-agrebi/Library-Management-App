@@ -11,7 +11,7 @@ const livreSchema = mongoose.Schema({
     couverture: {type: String, required: true},
     specialite: {type: mongoose.Schema.Types.ObjectId,ref:Specialite, required: true},
     maised: {type: mongoose.Schema.Types.ObjectId,ref:editeurs, required: true},
-    auteurs: {type: mongoose.Schema.Types.Array,ref:Auteur, required: true},
+    auteurs: [{type: mongoose.Schema.Types.ObjectId,ref:Auteur}],
 
     
 
