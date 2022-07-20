@@ -47,7 +47,7 @@ export const createLivre = async (req, res, next) => {
 
 export const updateLivre = async (req, res) => {
     const { id } = req.params;
-    const couv = req.file.filename
+    const couv = req.file ? req.file.filename : req.body.couverture;
 
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`pas de livre avec un id: ${id}`);
 
@@ -58,9 +58,9 @@ export const updateLivre = async (req, res) => {
         prix:req.body.prix,
         qtestock:req.body.qtestock,
         couverture: couv,
-        specialite:req.body.specialite,
-        maised:req.body.maised,
-        auteurs:req.body.auteurs,
+        specialite:mongoose.Types.ObjectId(req.body.specialite.trim()),
+        maised:mongoose.Types.ObjectId(req.body.maised.trim()),
+        auteurs:mongoose.Types.ObjectId(req.body.auteurs.trim()),
          _id: id };
 
     await livres.findByIdAndUpdate(id, liv1);

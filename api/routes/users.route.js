@@ -1,9 +1,9 @@
 import express from 'express';
-import { createUser, getuserBYEmail,getusers } from '../controllers/users.controller.js';
+import {updateUser, deleteUser , getOneUser, getUsers } from '../controllers/users.controller.js';
 const router = express.Router();
-router.post('/register', createUser);
-// localhost:3001/api/users/login
-router.post('/login', getuserBYEmail);
-router.get('/', getusers);
+router.get('/', getUsers);
+router.get('/:id', getOneUser);
+router.delete('/:id', deleteUser);
+router.put('/:id', updateUser)
 
 export default router;

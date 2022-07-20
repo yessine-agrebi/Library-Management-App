@@ -1,33 +1,38 @@
-import React, {useState, useEffect} from 'react';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import PersonIcon from '@mui/icons-material/Person';
-import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import PasswordIcon from '@mui/icons-material/Password';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import {register, reset} from "../../features/authSlice"
-import {useDispatch, useSelector} from "react-redux"
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import Avatar from "@mui/material/Avatar";
+import Button from "@mui/material/Button";
+import CssBaseline from "@mui/material/CssBaseline";
+import TextField from "@mui/material/TextField";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import PersonIcon from "@mui/icons-material/Person";
+import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
+import PasswordIcon from "@mui/icons-material/Password";
+import Typography from "@mui/material/Typography";
+import Container from "@mui/material/Container";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { register} from "../../features/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
+    <Typography
+      variant="body2"
+      color="text.secondary"
+      align="center"
+      {...props}
+    >
+      {"Copyright © "}
       <Link color="inherit" href="https://www.github.com/ragnar-codes">
         Yessine Agrebi
-      </Link>{' '}
+      </Link>{" "}
       {new Date().getFullYear()}
-      {'.'}
+      {"."}
     </Typography>
   );
 }
@@ -35,37 +40,35 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Register() {
-
-    const navigate = useNavigate()
-const [nom,setNom]=useState("")
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [password2, setPassword2] = useState("");
-const dispatch = useDispatch();
-const {user,isSuccess, isError} =useSelector((state) => state.auth);
-useEffect(() => {
-if (isError) {
-alert("error")
-}
-if (isSuccess || user) {
-    navigate('/login')
-}
-dispatch(reset())
-}, [user, isError, isSuccess, navigate, dispatch])
-const handleSubmit = (e) => {
-e.preventDefault()
-if (password !== password2) {
-alert('Passwords do not match')
-} else {
-const userData = {
-nom,
-email,
-password,
-}
-dispatch(register(userData))
-}
-}
-
+  const navigate = useNavigate();
+  const [nom, setNom] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [password2, setPassword2] = useState("");
+  const dispatch = useDispatch();
+  const { user, isSuccess, isError } = useSelector((state) => state.auth);
+  useEffect(() => {
+    // if (isError) {
+    //   alert("error");
+    // }
+    // if (isSuccess || user) {
+    //   navigate("/login");
+    // }
+    // dispatch(reset());
+  }, [user, isError, isSuccess, navigate, dispatch]);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password !== password2) {
+      alert("Passwords do not match");
+    } else {
+      const userData = {
+        nom,
+        email,
+        password,
+      };
+      dispatch(register(userData));
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -74,18 +77,23 @@ dispatch(register(userData))
         <Box
           sx={{
             marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box
+            component="form"
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
+          >
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -96,7 +104,7 @@ dispatch(register(userData))
                   id="firstName"
                   label={<PersonIcon />}
                   autoFocus
-                  onChange={e => setNom(e.target.value)}
+                  onChange={(e) => setNom(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -107,7 +115,7 @@ dispatch(register(userData))
                   label={<AlternateEmailIcon />}
                   name="email"
                   autoComplete="email"
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -119,7 +127,7 @@ dispatch(register(userData))
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                  onChange={e => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -131,7 +139,7 @@ dispatch(register(userData))
                   type="password"
                   id="password2"
                   autoComplete="new-password"
-                  onChange={e => setPassword2(e.target.value)}
+                  onChange={(e) => setPassword2(e.target.value)}
                 />
               </Grid>
             </Grid>

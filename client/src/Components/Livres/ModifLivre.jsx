@@ -9,7 +9,7 @@ import {
 } from "../../features/livreSlice";
 import axios from "axios";
 import { Form } from "react-bootstrap";
-import { getAuteurs } from "../../features/auteursSlice";
+import { getAuteurByID, getAuteurs } from "../../features/auteursSlice";
 import { getEditeurByID, getEditeurs } from "../../features/editeurSlice";
 import {
   getSpecialiteByID,
@@ -29,11 +29,12 @@ const ModifLivre = (props) => {
   const [qtestock, setQteStock] = useState("");
   const [annedition, setAnnedition] = useState();
   const [prix, setPrix] = useState("");
-  const [auteurs, setAuteurs] = useState([{}]);
+  const [auteurs, setAuteurs] = useState("");
   const [maised, setMaisonEdit] = useState("");
   const [specialite, setSpecialite] = useState("");
   //Global States
   const { authors } = useSelector((state) => state.authors);
+  const {author} = useSelector((state) => state.authors);
   const { editeurs } = useSelector((state) => state.editeurs);
   const { editeur } = useSelector((state) => state.editeurs);
   const { specialites } = useSelector((state) => state.specialites);
@@ -55,11 +56,18 @@ const ModifLivre = (props) => {
     setQteStock(livre.qtestock);
     setAnnedition(livre.annedition);
     setPrix(livre.prix);
-    setAuteurs(livre.auteurs);
-    setMaisonEdit(livre.maised);
-    setSpecialite(livre.specialite);
-    console.log(auteurs);
-
+    if(livre.auteurs){
+      setAuteurs(livre.auteurs._id);
+    }
+    
+    if(livre.maised){
+      setMaisonEdit(livre.maised._id);
+    }
+    
+    if(livre.specialite){
+      setSpecialite(livre.specialite._id);
+    }
+    console.log(livre.auteurs);
   }, []);
 
   // modals states
@@ -104,9 +112,9 @@ const ModifLivre = (props) => {
   };
   //change state auteurs
   const handleChange = (event) => {
-    console.log("event", auteurs);
-    console.log("value", event.target.value);
-    setAuteurs((auteurs) => [...auteurs, event.target.value]);
+    setAuteurs(event.target.value);
+    dispatch(getAuteurByID(event.target.value));
+    console.log(event.target.value);
   };
   //change state editeurs
   const handleChangeEditeurs = (event) => {
@@ -118,6 +126,7 @@ const ModifLivre = (props) => {
   const handleChangeSpec = (event) => {
     setSpecialite(event.target.value);
     dispatch(getSpecialiteByID(event.target.value));
+    console.log(event.target.value)
   };
   // image handler
   const handleFileChange = (e) => {
@@ -125,13 +134,13 @@ const ModifLivre = (props) => {
   };
 
   const deleteSelectedAuthor = (auteur) => {
-    const array = [...auteurs] // make a separate copy of the array
+    const array = [...auteurs]; // make a separate copy of the array
     var index = array.indexOf(auteur);
-    if(index > -1) {
+    if (index > -1) {
       array.splice(index, 1); //remove
     }
     setAuteurs(array);
-    dispatch(getAuteurs())
+    dispatch(getAuteurs());
   };
 
   return (
@@ -227,21 +236,19 @@ const ModifLivre = (props) => {
                 })
               : "pas d'auteurs"}
           </Form.Select>
-          {auteurs
-            ? auteurs.map((auteur) => {
-                return (
-                  <Button
-                    key={auteur._id}
-                    variant="outlined"
-                    color="primary"
-                    className="d-flex mt-1"
-                    onClick={() => deleteSelectedAuthor(auteur)}
-                  >
-                    {auteur.nomauteur} <ClearIcon />
-                  </Button>
-                );
-              })
-            : ""}
+          {author && auteurs ? (
+            <Button
+              key={author._id}
+              variant="outlined"
+              color="primary"
+              className="d-flex mt-2"
+            >
+              {author.nomauteur}
+              <ClearIcon onClick={(e) => setAuteurs("")}></ClearIcon>{" "}
+            </Button>
+          ) : (
+            ""
+          )}
         </Form.Group>
         {/* Editors */}
         <Form.Group className="mb-3" controlId="formBasicQte">
@@ -249,6 +256,7 @@ const ModifLivre = (props) => {
             variant="contained"
             color="success"
             style={{ width: "150px", marginBottom: "5px" }}
+            value={maised}
             onClick={() => handleOpen("editeur")}
           >
             <AddCircleIcon className="me-1" />
@@ -287,6 +295,7 @@ const ModifLivre = (props) => {
         <Form.Group>
           <Form.Select
             aria-label="Default select example"
+            value={specialite}
             onChange={handleChangeSpec}
           >
             <option>Select Specialite</option>
@@ -307,8 +316,7 @@ const ModifLivre = (props) => {
               color="primary"
               className="d-flex mt-2"
             >
-              {" "}
-              {spec.nomspecialite}{" "}
+              {spec.nomspecialite}
               <ClearIcon onClick={(e) => setSpecialite("")}></ClearIcon>{" "}
             </Button>
           ) : (

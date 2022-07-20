@@ -26,7 +26,7 @@ const port = 3001;
 //app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
-mongoose.connect("mongodb://127.0.0.1/lib");
+mongoose.connect("mongodb://127.0.0.1/Bibliotheque");
 
 app.use("/public", express.static("public"));
 app.use("/images", express.static("images"));

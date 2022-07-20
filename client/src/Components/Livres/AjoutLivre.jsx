@@ -22,13 +22,14 @@ const AjoutLivre = (props) => {
   const [qtestock, setQteStock] = useState("");
   const [annedition, setAnnedition] = useState();
   const [prix, setPrix] = useState("");
-  const [auteurs, setAuteurs] = useState([]);
+  const [auteurs, setAuteurs] = useState("");
   const [maisonedit, setMaisonEdit] = useState("");
   const [specialite, setSpecialite] = useState("");
   //Global States
   const { authors } = useSelector((state) => state.authors);
   const { editeurs } = useSelector((state) => state.editeurs);
   const { editeur } = useSelector((state) => state.editeurs);
+  const {author} = useSelector((state) => state.authors)
   const { specialites } = useSelector((state) => state.specialites);
   const { spec } = useSelector((state) => state.specialites);
   //fetch data
@@ -71,7 +72,7 @@ const AjoutLivre = (props) => {
     formData.append("auteurs", auteurs);
     formData.append("maisonedit", maisonedit);
     formData.append("specialite", specialite);
-    console.log(formData);
+console.log([...formData]);
     await axios
       .post("http://localhost:3001/api/livres", formData)
       .then((res) => {
@@ -80,12 +81,10 @@ const AjoutLivre = (props) => {
     dispatch(getLivres());
   };
   //change state auteurs
-  const handleChange = async (event) => {
-    const array = auteurs;
-    array.push({"_id": event.target.value})
-    console.log(array[0])
-    setAuteurs(array);
-    dispatch(getAuteurs())
+  const handleChange = (event) => {
+    setAuteurs(event.target.value);
+    dispatch(getAuteurByID(event.target.value));
+    console.log(author);
 
   };
   //change state editeurs
@@ -201,22 +200,19 @@ const AjoutLivre = (props) => {
                 })
               : "pas d'auteurs"}
           </Form.Select>
-          {auteurs
-            ? auteurs.map((auteur) => {
-                return (
-                  <Button
-                    key={auteur._id}
-                    variant="outlined"
-                    color="primary"
-                    className="d-flex mt-1"
-                    onClick={() => deleteSelectedAuthor(auteur)}
-                  >
-                    {" "}
-                    {auteur.nomauteur} <ClearIcon></ClearIcon>{" "}
-                  </Button>
-                );
-              })
-            : ""}
+          {author && auteurs ? (
+            <Button
+              key={author._id}
+              variant="outlined"
+              color="primary"
+              className="d-flex mt-2"
+            >
+              {author.nomauteur}
+              <ClearIcon onClick={(e) => setAuteurs("")}></ClearIcon>{" "}
+            </Button>
+          ) : (
+            ""
+          )}
         </Form.Group>
         {/* Editors */}
         <Form.Group className="mb-3" controlId="formBasicQte">
