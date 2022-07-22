@@ -10,44 +10,24 @@ import Logout from "./Components/Admin/Logout";
 import Home from "./Components/Home/Home";
 import AdminRoute from "./Components/AdminRoute/AdminRoute";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
+import { useSelector } from "react-redux";
 function App() {
+  const { user } = useSelector((state) => state.auth);
   return (
     <div className="App">
       <Router>
         <Routes>
-          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}></Route>
-          <Route
-            path="/admin/dashboard"
-            element={
-              <AdminRoute>
-                <DashboardAdmin />
-              </AdminRoute>
-            }
-          ></Route>
-          <Route
-            path="/admin/livres"
-            element={
-              <AdminRoute>
-                <ListLivres />
-              </AdminRoute>
-            }
-          ></Route>
-          <Route
-            path="/admin/auteurs"
-            element={
-              <AdminRoute>
-                <ListAuteurs />
-              </AdminRoute>
-            }
-          ></Route>
-          <Route
-            path="/admin/editeurs"
-            element={
-              <AdminRoute>
-                <ListEditeurs />
-              </AdminRoute>
-            }
-          ></Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Home />}></Route>
+          </Route>
+
+          <Route element={<AdminRoute />}>
+            <Route path="/admin/dashboard" element={<DashboardAdmin />}></Route>
+            <Route path="/admin/livres" element={<ListLivres />}></Route>
+            <Route path="/admin/auteurs" element={<ListAuteurs />}></Route>
+            <Route path="/admin/editeurs" element={<ListEditeurs />}></Route>
+          </Route>
+
           <Route path="auth/logout" element={<Logout />} />
           <Route path="auth/login" element={<Login />} />
           <Route path="auth/register" element={<Register />}></Route>

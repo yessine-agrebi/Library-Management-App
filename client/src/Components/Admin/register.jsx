@@ -50,7 +50,7 @@ export default function Register() {
      if (isError) {
        alert("error");
      }
-    if (isSuccess || user) {
+    if (isSuccess) {
        navigate("/auth/login");
      }
      //dispatch(reset());

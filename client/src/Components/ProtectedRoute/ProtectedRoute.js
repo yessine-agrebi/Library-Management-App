@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 
-const ProtectedRoute = ({children}) => {
+const ProtectedRoute = () => {
     const {user} = useSelector((state) => state.auth);
-    return user ? children : <Navigate to="/auth/login" />;
+    return user ? <Outlet /> : <Navigate to="/auth/login" replace />;
 
 }
 

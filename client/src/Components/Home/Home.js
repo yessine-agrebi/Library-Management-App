@@ -11,9 +11,10 @@ import CardMedia from "@mui/material/CardMedia";
 import {Stack, Box, Typography, Button} from "@mui/material";
 import Pagination from '@mui/material/Pagination';
 import Loader from "../Loader/Loader";
+import Navbar from "../Navbar/Navbar";
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(6);
+  const [booksPerPage] = useState(10);
   const { livres } = useSelector((state) => state.livres);
   const dispatch = useDispatch();
   // let navigate = useNavigate();
@@ -27,9 +28,10 @@ const Home = () => {
 
   // Pagination
   const indexOfLastBook = currentPage * booksPerPage;
+  console.log("indexOfLastBook = " + indexOfLastBook);
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = livres.slice(indexOfFirstBook, indexOfLastBook);
-
+  console.log("current books : " + currentBooks);
   const paginate = (event, value) => {
     setCurrentPage(value);
 
@@ -38,12 +40,14 @@ const Home = () => {
 
   if (!currentBooks.length) return <Loader />;
   return (
-    <Box id="livres" sx={{ mt: { lg: '109px' } }} mt="50px" p="20px">
-    <Stack direction="row" sx={{ gap: { lg: '107px', xs: '50px' } }} flexWrap="wrap" justifyContent="center">
-      {livres &&
-        livres?.map((livre) => {
+    <Box id="livres" >
+    <Navbar />
+    <Typography id="title" variant="h2" textAlign="center" mt="30px" >Book Store</Typography>
+    <Stack direction="row" sx={{ gap: { lg: '100px', xs: '50px' } }} flexWrap="wrap" justifyContent="center" mt="10px">
+      {currentBooks &&
+        currentBooks?.map((livre) => {
           return (
-            <Card key={livre._id} sx={{ maxWidth: 345 }}>
+            <Card key={livre._id} sx={{ MaxWidth: 445}}>
               <CardMedia
                 component="img"
                 alt="green iguana"

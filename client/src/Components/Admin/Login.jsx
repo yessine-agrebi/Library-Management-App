@@ -44,9 +44,9 @@ const Login = () => {
       } else {
         navigate("/");
       }
-    } catch (error) {}
-    dispatch(login(objetuser), setTimeout());
-    navigate("/");
+    } catch (error) {
+    console.log({error: error.message})
+    }
   };
 
   return (
@@ -110,7 +110,7 @@ const Login = () => {
               Sign In
             </Button>
             <Grid container>
-              <Link to="auth/register" variant="body2">
+              <Link to="../auth/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

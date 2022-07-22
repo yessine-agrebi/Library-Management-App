@@ -61,6 +61,7 @@ export const authSlice = createSlice({
     [register.pending]: (state, action) => {
       state.isLoading = true;
       state.status = null;
+      state.isSuccess = true;
     },
     [register.fulfilled]: (state, action) => {
       state.user = action.payload;
@@ -90,7 +91,7 @@ export const authSlice = createSlice({
       localStorage.setItem("access_token", JSON.stringify(action.payload.token));
       MySwal.fire({
         icon: 'success',
-        title: 'Connection was successful',
+        title: `Welcome ${state.user.username}`,
         })
     },
     [login.rejected]: (state, action) => {
@@ -101,6 +102,7 @@ export const authSlice = createSlice({
     [logout.fulfilled]: (state, action) => {
       state.isLoggedIn = false;
       state.user = null;
+      state.isSuccess = false;
     },
   },
 });
