@@ -11,10 +11,10 @@ const Logout = () => {
       dispatch(reset());  
       dispatch(logout())
         .then(() => {
-          navigate("/admin/dashboard");
+          navigate("/auth/login");
         });
         
-    }, []);
+    }, [navigate, dispatch]);
   
     return (
       <div>

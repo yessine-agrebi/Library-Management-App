@@ -3,8 +3,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -41,30 +39,32 @@ const theme = createTheme();
 
 export default function Register() {
   const navigate = useNavigate();
-  const [nom, setNom] = useState("");
+  const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [isAdmin, setIsAsmin] = useState(false);
   const dispatch = useDispatch();
   const { user, isSuccess, isError } = useSelector((state) => state.auth);
   useEffect(() => {
-    // if (isError) {
-    //   alert("error");
-    // }
-    // if (isSuccess || user) {
-    //   navigate("/login");
-    // }
-    // dispatch(reset());
-  }, [user, isError, isSuccess, navigate, dispatch]);
+     if (isError) {
+       alert("error");
+     }
+    if (isSuccess || user) {
+       navigate("/auth/login");
+     }
+     //dispatch(reset());
+  }, [user, isError, isSuccess, navigate]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
       alert("Passwords do not match");
     } else {
       const userData = {
-        nom,
-        email,
-        password,
+        username: username,
+        email: email,
+        password: password,
+        isAdmin: isAdmin
       };
       dispatch(register(userData));
     }
@@ -97,14 +97,14 @@ export default function Register() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="given-name"
-                  name="nom"
+                  autoComplete="given-username"
+                  name="username"
                   required
                   fullWidth
-                  id="firstName"
+                  id="username"
                   label={<PersonIcon />}
                   autoFocus
-                  onChange={(e) => setNom(e.target.value)}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -153,7 +153,7 @@ export default function Register() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/auth/login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>

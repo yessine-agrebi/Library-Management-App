@@ -74,9 +74,19 @@ export const authSlice = createSlice({
       state.status = action.payload;
       state.user = null;
     },
+    [login.pending]: (state, action) => {
+      state.isLoading = true;
+      state.isLoggedIn = false;
+      state.user = null;
+      state.isSuccess = false;
+      state.isError = false;
+    },
     [login.fulfilled]: (state, action) => {
+      state.isLoading = false;
       state.isLoggedIn = true;
       state.user = action.payload;
+      state.isSuccess = true;
+      state.isError = false;
       localStorage.setItem("access_token", JSON.stringify(action.payload.token));
       MySwal.fire({
         icon: 'success',

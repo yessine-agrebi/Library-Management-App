@@ -9,7 +9,7 @@ const register=async(user)=> {
     return await Api.post("/auth/login", user);
     } 
     const logout=async()=> { 
-    localStorage.removeItem("CC_Token");
+    localStorage.removeItem("access_token");
     } 
     export const authService = {
     register,

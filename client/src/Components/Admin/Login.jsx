@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../features/authSlice";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -29,7 +29,8 @@ const Login = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const { auth } = useSelector((state) => state.auth);
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
     // const objetuser = encode({ "email": "password", email, password })
@@ -37,11 +38,21 @@ const Login = () => {
       username: username,
       password: password,
     };
-    console.log(objetuser);
-    await dispatch(login(objetuser));
-    navigate("/admin/dashboard");
+    try {
+      const user = await dispatch(login(objetuser)).unwrap();
+      if (user && user.isAdmin) {
+        navigate("/admin/dashboard")
+      }else {
+        navigate("/")
+      }
+    } catch (error) {
+      
+    }
+    dispatch(login(objetuser), setTimeout());
+    navigate("/");
+    
   };
-  
+
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">

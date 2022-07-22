@@ -8,35 +8,50 @@ import Register from "./Components/Admin/Register";
 import { useSelector } from "react-redux";
 import Login from "./Components/Admin/Login";
 import Logout from "./Components/Admin/Logout";
-
+import Home from "./Components/Home/Home";
+import AdminRoute from "./Components/AdminRoute/AdminRoute";
+import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 function App() {
-  const { isLoggedIn } = useSelector((state) => state.auth);
   return (
     <div className="App">
       <Router>
-        {isLoggedIn ? (
-          <>
-            <DashboardAdmin />
-          </>
-        ) : null}
         <Routes>
-          {isLoggedIn ? (
-            <>
-            <Route path="/admin/dashboard" element={<DashboardAdmin />}></Route>
-              <Route path="/admin/livres" element={<ListLivres />}></Route>
-              <Route path="/admin/auteurs" element={<ListAuteurs />}></Route>
-              <Route path="/admin/editeurs" element={<ListEditeurs />}></Route>
-            </>
-          ) : (
-            <Route path="auth/login" element={<Login />}></Route>
-          )}
-          <Route path="auth/register" element={<Register />}></Route>
-
+          <Route path="/" element={<ProtectedRoute><Home /></ProtectedRoute>}></Route>
+          <Route
+            path="/admin/dashboard"
+            element={
+              <AdminRoute>
+                <DashboardAdmin />
+              </AdminRoute>
+            }
+          ></Route>
+          <Route
+            path="/admin/livres"
+            element={
+              <AdminRoute>
+                <ListLivres />
+              </AdminRoute>
+            }
+          ></Route>
+          <Route
+            path="/admin/auteurs"
+            element={
+              <AdminRoute>
+                <ListAuteurs />
+              </AdminRoute>
+            }
+          ></Route>
+          <Route
+            path="/admin/editeurs"
+            element={
+              <AdminRoute>
+                <ListEditeurs />
+              </AdminRoute>
+            }
+          ></Route>
           <Route path="auth/logout" element={<Logout />} />
-          {/* <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<CheckoutSuccess />} />
-          <Route path="/pdfcart" element={<PdfCart />} /> */}
+          <Route path="auth/login" element={<Login />} />
+          <Route path="auth/register" element={<Register />}></Route>
         </Routes>
       </Router>
     </div>

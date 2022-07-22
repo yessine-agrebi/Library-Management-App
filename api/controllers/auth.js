@@ -11,9 +11,10 @@ export const register = async (req, res, next) => {
             username: req.body.username,
             email: req.body.email,
             password: hash,
+            isAdmin: false
         })
         await newUser.save();
-        res.status(200).send("User has been created")
+        res.status(200).send(newUser)
     }catch(err){
         next(err)
     }
@@ -28,10 +29,10 @@ export const login = async (req, res, next) => {
         
         const token = jwt.sign({id: user._id, isAdmin: user.isAdmin}, process.env.JWT); 
         
-        const {password, isAdmin, ...otherDetails} = user._doc;
+        const {isAdmin, ...otherDetails} = user._doc;
         res.cookie("access_token", token, {
             httpOnly: true,
-        }).status(200).json({...otherDetails});
+        }).status(200).json({...user._doc});
     }catch(err){
         next(err)
     }
