@@ -43,7 +43,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [isAdmin, setIsAsmin] = useState(false);
+  const [isAdmin] = useState(false);
   const dispatch = useDispatch();
   const { user, isSuccess, isError } = useSelector((state) => state.auth);
   useEffect(() => {

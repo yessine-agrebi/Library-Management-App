@@ -21,7 +21,7 @@ const ModalAffiche = (props) => {
   const { livre } = useSelector((state) => state.livres);
   useEffect(() => {
     dispatch(getLivreByID(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
   return (
     <div>
       <Modal

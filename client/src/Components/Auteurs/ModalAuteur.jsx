@@ -1,6 +1,5 @@
 import { Box, Modal, Typography } from "@mui/material";
 import React from 'react'
-import ModifAuteur from './ModifAuteur';
 import AjoutAuteur from './AjoutAuteur'
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 const style = {

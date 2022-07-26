@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getLivreByID,
   getLivres,
-  updateLivre,
 } from "../../features/livreSlice";
 import axios from "axios";
 import { Form } from "react-bootstrap";
@@ -18,11 +17,10 @@ import {
 import ModalAuteur from "../Auteurs/ModalAuteur";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModalEditeur from "../Editeurs/ModalEditeur";
-import { livreService } from "../../services/livres";
-import { auteurService } from "../../services/auteurs";
+
 
 const ModifLivre = (props) => {
-  const [_id, set_id] = useState(props._id);
+  const [_id] = useState(props._id);
   const [isbn, setIsbn] = useState("");
   const [titre, setTitre] = useState("");
   const [couverture, setCouverture] = useState("");
@@ -47,7 +45,7 @@ const ModifLivre = (props) => {
     dispatch(getEditeurs());
     dispatch(getSpecialites());
     dispatch(getLivreByID(_id));
-  }, []);
+  }, [dispatch, _id]);
 
   useEffect(() => {
     setIsbn(livre.isbn);
@@ -68,7 +66,7 @@ const ModifLivre = (props) => {
       setSpecialite(livre.specialite._id);
     }
     console.log(livre.auteurs);
-  }, []);
+  }, [dispatch, livre]);
 
   // modals states
   const [openModalAuteur, setOpenModalAuteur] = useState();
@@ -131,16 +129,6 @@ const ModifLivre = (props) => {
   // image handler
   const handleFileChange = (e) => {
     setCouverture(e.target.files[0]);
-  };
-
-  const deleteSelectedAuthor = (auteur) => {
-    const array = [...auteurs]; // make a separate copy of the array
-    var index = array.indexOf(auteur);
-    if (index > -1) {
-      array.splice(index, 1); //remove
-    }
-    setAuteurs(array);
-    dispatch(getAuteurs());
   };
 
   return (

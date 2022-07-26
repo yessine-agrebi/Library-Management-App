@@ -13,6 +13,8 @@ import commandeRouter from "./routes/commande.route.js";
 import userRouter from "./routes/users.route.js";
 import cookieParser from "cookie-parser";
 import authRoute from "./routes/auth.js";
+import payementRouter from "./routes/payement.route.js";
+import orderRouter from "./routes/order.route.js";
 dotenv.config();
 const app = express();
 app.use(bodyParser.json());
@@ -26,7 +28,7 @@ const port = 3001;
 //app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
-mongoose.connect("mongodb://127.0.0.1/Bibliotheque");
+mongoose.connect("mongodb://localhost:27017/Bibliotheque");
 
 app.use("/public", express.static("public"));
 app.use("/images", express.static("images"));
@@ -38,6 +40,8 @@ app.use("/api/specialites", specialiteRouter);
 app.use("/api/clients", clientRouter);
 app.use("/api/commandes", commandeRouter);
 app.use("/api/users", userRouter);
+app.use("/api/payement", payementRouter);
+app.use("/api/order", orderRouter);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

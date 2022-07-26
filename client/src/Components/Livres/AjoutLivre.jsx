@@ -29,7 +29,7 @@ const AjoutLivre = (props) => {
   const { authors } = useSelector((state) => state.authors);
   const { editeurs } = useSelector((state) => state.editeurs);
   const { editeur } = useSelector((state) => state.editeurs);
-  const {author} = useSelector((state) => state.authors)
+  const { author } = useSelector((state) => state.authors);
   const { specialites } = useSelector((state) => state.specialites);
   const { spec } = useSelector((state) => state.specialites);
   //fetch data
@@ -72,7 +72,7 @@ const AjoutLivre = (props) => {
     formData.append("auteurs", auteurs);
     formData.append("maisonedit", maisonedit);
     formData.append("specialite", specialite);
-console.log([...formData]);
+    console.log([...formData]);
     await axios
       .post("http://localhost:3001/api/livres", formData)
       .then((res) => {
@@ -85,7 +85,6 @@ console.log([...formData]);
     setAuteurs(event.target.value);
     dispatch(getAuteurByID(event.target.value));
     console.log(author);
-
   };
   //change state editeurs
   const handleChangeEditeurs = (event) => {
@@ -96,16 +95,12 @@ console.log([...formData]);
   // change state specialite
   const handleChangeSpec = (event) => {
     setSpecialite(event.target.value);
-    console.log( specialite );
+    console.log(specialite);
     dispatch(getSpecialiteByID(event.target.value));
   };
   // image handler
   const handleFileChange = (e) => {
     setCouverture(e.target.files[0]);
-  };
-
-  const deleteSelectedAuthor = (auteur) => {
-    console.log(auteur);
   };
 
   return (

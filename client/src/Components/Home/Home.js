@@ -12,26 +12,28 @@ import {Stack, Box, Typography, Button} from "@mui/material";
 import Pagination from '@mui/material/Pagination';
 import Loader from "../Loader/Loader";
 import Navbar from "../Navbar/Navbar";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import PreviewIcon from '@mui/icons-material/Preview';
+import { addToCart } from "../../features/cartSlice";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [booksPerPage] = useState(10);
+  const [booksPerPage] = useState(8);
   const { livres } = useSelector((state) => state.livres);
+  const {cart} = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  // let navigate = useNavigate();
   useEffect(() => {
     dispatch(getLivres());
-  }, [dispatch]);
-  // const handleAddToCart = (product) => {
-  //   dispatch(addToCart(product));
-  //   navigate("/cart");
-  // };
-
+  }, [dispatch, cart]);
+  
+  const handleAddToCart = (livre) => {
+    dispatch(addToCart(livre));
+  };
   // Pagination
   const indexOfLastBook = currentPage * booksPerPage;
-  console.log("indexOfLastBook = " + indexOfLastBook);
+  
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
   const currentBooks = livres.slice(indexOfFirstBook, indexOfLastBook);
-  console.log("current books : " + currentBooks);
   const paginate = (event, value) => {
     setCurrentPage(value);
 
@@ -40,22 +42,22 @@ const Home = () => {
 
   if (!currentBooks.length) return <Loader />;
   return (
-    <Box id="livres" >
-    <Navbar />
-    <Typography id="title" variant="h2" textAlign="center" mt="30px" >Book Store</Typography>
-    <Stack direction="row" sx={{ gap: { lg: '100px', xs: '50px' } }} flexWrap="wrap" justifyContent="center" mt="10px">
+    <Box id="livres">
+    <Navbar/> 
+    <Stack direction="row" sx={{ gap: { lg: '100px', xs: '50px' } }} flexWrap="wrap" justifyContent="center" mt="100px">
       {currentBooks &&
         currentBooks?.map((livre) => {
           return (
-            <Card key={livre._id} sx={{ MaxWidth: 445}}>
+            <Card key={livre._id} sx={{ MaxWidth: 445, height: 520 }}>
               <CardMedia
                 component="img"
                 alt="green iguana"
-                height="140"
+                height="350px"
+                width="100%"
                 image={`http://localhost:3001/public/images/${livre.couverture}`}
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography variant="h5" component="div">
                   {livre.titre}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
@@ -65,9 +67,12 @@ const Home = () => {
                   {livre.prix} TND
                 </Typography>
               </CardContent>
-              <CardActions>
-                <Button size="small">Add To Cart</Button>
-                <Button size="small">Show</Button>
+              <CardActions >
+              <Button variant="contained" onClick={() => handleAddToCart(livre)} >
+                <AddShoppingCartIcon/>
+                Add To Cart
+              </Button>
+                <Button variant="outlined" ><PreviewIcon />Preview</Button>
               </CardActions>
             </Card>
           );

@@ -1,11 +1,9 @@
 import React, {useState} from 'react'
-import { removeSelectedAuteur } from '../../features/auteursSlice'
 import MUIDataTable from "mui-datatables";
 import { ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/material/styles";
 import ReactLoading from 'react-loading';
 import {useDispatch,useSelector} from "react-redux"
-import {deleteAuteur} from "../../features/auteursSlice";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
@@ -27,11 +25,7 @@ const AfficheEditeurs = () => {
     const handleCloseEditeur=()=>{
         setOpenModalEditeur(false)
     }
-    const handleClose=()=>{
-        setOpenModalEditeur(false)
-        set_id("")
-        dispatch(removeSelectedAuteur())
-    }
+
     // Edit Livre
     const editEditeur = (value) => {
         setOpenModalEditeur(true);

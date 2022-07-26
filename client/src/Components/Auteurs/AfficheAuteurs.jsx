@@ -1,10 +1,8 @@
 import React, {useState} from 'react'
-import { removeSelectedAuteur } from '../../features/auteursSlice'
 import MUIDataTable from "mui-datatables";
 import { ThemeProvider } from "@mui/styles";
 import { createTheme } from "@mui/material/styles";
 import ReactLoading from 'react-loading';
-import {useNavigate } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux"
 import {deleteAuteur} from "../../features/auteursSlice";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
@@ -27,11 +25,7 @@ const AfficheAuteurs = () => {
     const handleCloseAuteur=()=>{
         setOpenModalAuteur(false)
     }
-    const handleClose=()=>{
-        setOpenModalAuteur(false)
-        set_id("")
-        dispatch(removeSelectedAuteur())
-    }
+    
     // Edit Livre
     const editAuteur = (value) => {
         setOpenModalAuteur(true);

@@ -6,7 +6,8 @@ const AdminRoute = () => {
   const { user } = useSelector((state) => state.auth);
   if (user && user.isAdmin) {
     return <><DashboardAdmin /> <Outlet /> </>;
-  } else if (user && user.isAdmin === false) {
+  } 
+  else if (user && user.isAdmin === false) {
     return <h1>You are not Allowed to visit admin panel</h1>;
   }else {
     return <Navigate to="../auth/login" />;
