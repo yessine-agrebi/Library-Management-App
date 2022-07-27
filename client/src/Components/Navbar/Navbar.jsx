@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -34,8 +34,9 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
-  
+
   const { cartTotalQuantity } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.auth);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -144,8 +145,15 @@ const Navbar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton aria-label="cart" style={{ marginRight: "10px" }} onClick={() => navigate("/cart")}>
-              <StyledBadge badgeContent={cartTotalQuantity > 0 ? cartTotalQuantity : 0 } color="secondary">
+            <IconButton
+              aria-label="cart"
+              style={{ marginRight: "10px" }}
+              onClick={() => navigate("/cart")}
+            >
+              <StyledBadge
+                badgeContent={cartTotalQuantity > 0 ? cartTotalQuantity : 0}
+                color="secondary"
+              >
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>
@@ -156,6 +164,7 @@ const Navbar = () => {
             >
               Logout
             </Button>
+
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar

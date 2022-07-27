@@ -11,7 +11,7 @@ const DeleteOrder=async(id)=> {
 return await Axios.delete(ORDER_API +'/' + id)
 }
 const AddOrder=async(order)=> {
-return await Axios.post(ORDER_API+"/", order);
+return await Axios.post(ORDER_API, order);
 }
 const EditOrder=async(obj)=> { 
 return await Axios.put(ORDER_API + '/' + obj._id, obj )

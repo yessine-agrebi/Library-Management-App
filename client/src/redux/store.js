@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore} from '@reduxjs/toolkit'
 import livreReducer from "../features/livreSlice"
 import auteurReducer from "../features/auteursSlice"
 import editeurReducer from "../features/editeurSlice"
@@ -37,7 +37,7 @@ export const store = configureStore({
     editeurs: editeursReducer,
     specialites: specialitesReducer,
     auth: persistedReducer,
-    cart:cartPersistedReducer,
+    cart:cartReducer,
     order:orderReducer
   },
   middleware: (getDefaultMiddleware) =>
@@ -47,3 +47,4 @@ export const store = configureStore({
       }
     }).concat(logger)
 });
+

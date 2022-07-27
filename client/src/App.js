@@ -25,6 +25,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<CheckoutSuccess />} />
             <Route path="/pdfcart" element={<PdfCart />} />
+            
           </Route>
 
           <Route element={<AdminRoute />}>

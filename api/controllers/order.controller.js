@@ -39,7 +39,7 @@ export const getAllOrders = async (req, res) => {
   }
 
   export const postCreateOrder = async (req, res) => { 
-
+    console.log(req.body)
     const { allProduct, user, amount} = req.body;
 
     const newOrder = new Order({ allProduct:allProduct, user:user, amount:amount })

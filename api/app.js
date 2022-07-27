@@ -41,7 +41,7 @@ app.use("/api/clients", clientRouter);
 app.use("/api/commandes", commandeRouter);
 app.use("/api/users", userRouter);
 app.use("/api/payement", payementRouter);
-app.use("/api/order", orderRouter);
+app.use("/api/orders", orderRouter);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

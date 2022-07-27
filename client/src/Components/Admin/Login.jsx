@@ -16,6 +16,7 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 
+
 const theme = createTheme({
   palette: {
     neutral: {
@@ -34,9 +35,12 @@ const Login = () => {
     event.preventDefault();
     // const objetuser = encode({ "email": "password", email, password })
     const objetuser = {
-      username: username,
-      password: password,
+      username,
+      password
     };
+    console.log("objetuser")
+    console.log(objetuser)
+
     try {
       const user = await dispatch(login(objetuser)).unwrap();
       if (user && user.isAdmin) {
@@ -45,7 +49,7 @@ const Login = () => {
         navigate("/");
       }
     } catch (error) {
-    console.log({error: error.message})
+    console.log({message: error.message})
     }
   };
 

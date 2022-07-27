@@ -4,9 +4,30 @@ import React, { useState } from "react";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { createOrder } from "../../features/orderSlice";
+import { clearCart } from "../../features/cartSlice";
 const MySwal = withReactContent(Swal);
 function StripePayement() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector((state) => state.auth);
+  const {cartItems} = useSelector((state) => state.cart);
+  
+    var tabc = [];
+    cartItems.map((c) => {
+      tabc.push({
+        id: c._id,
+        quantitiy: c.cartQuantity,
+        price: c.cartQuantity * c.prix,
+      });
+      console.log(tabc)
+      return tabc;
+    })
+  
+  
+
   const { total } = useParams();
   const publishableKey =
     "pk_test_51LPizIJrml64tMYM2dAoRXZlqSgH7CML3N2ZZWafwGevTlwxHKRLLsEg8kfSgg9ei9XnzbuOmA9MWk8Tjxw0GmAe00FKXdn58F";
@@ -15,13 +36,25 @@ function StripePayement() {
     price: `${total}`,
   });
   const priceForStripe = product.price * 100;
+
   const handleSuccess = () => {
     MySwal.fire({
       icon: "success",
       title: "Payment was successful",
       time: 4000,
     });
-  };
+    let order={
+      allProduct: tabc,
+      user:user._id,
+      amount: total
+      }
+      dispatch(createOrder(order))
+      navigate('/')
+      };
+
+  
+    
+    
   const handleFailure = () => {
     MySwal.fire({
       icon: "error",
@@ -65,5 +98,5 @@ function StripePayement() {
       />
     </div>
   );
-}
+  }
 export default StripePayement;

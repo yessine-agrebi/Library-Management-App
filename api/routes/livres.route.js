@@ -3,10 +3,10 @@ import { getLivres, getOneLivre, createLivre, updateLivre, deleteLivre } from ".
 import { verifyAdmin, verifyUser } from "../utils/verifyToken.js";
 import upload from "./upload.js";
 const router = express.Router();
-
+router.post('/', upload, createLivre);
 router.get('/', getLivres);
 router.get('/:id', getOneLivre);
-router.post('/', upload, createLivre);
+
 router.put('/:id', upload, updateLivre);
 router.delete('/:id', deleteLivre);
 
