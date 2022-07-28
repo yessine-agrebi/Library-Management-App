@@ -21,6 +21,7 @@ function StripePayement() {
         id: c._id,
         quantitiy: c.cartQuantity,
         price: c.cartQuantity * c.prix,
+        image: c.couverture
       });
       console.log(tabc)
       return tabc;
@@ -48,8 +49,9 @@ function StripePayement() {
       user:user._id,
       amount: total
       }
-      dispatch(createOrder(order))
-      navigate('/')
+      dispatch(createOrder(order));
+      dispatch(clearCart());
+      navigate('/');
       };
 
   

@@ -13,7 +13,7 @@ import Cart from "./Components/Cart/Cart";
 import CheckoutSuccess from "./Components/Checkout/CheckoutSuccess";
 import PdfCart from "./Components/Checkout/PdfCart";
 import StripePayement from "./Components/payement/StripePayement";
-
+import ListOrders from "./Components/Orders/ListOrders";
 function App() {
   return (
     <div className="App">
@@ -33,6 +33,7 @@ function App() {
             <Route path="/admin/livres" element={<ListLivres />}></Route>
             <Route path="/admin/auteurs" element={<ListAuteurs />}></Route>
             <Route path="/admin/editeurs" element={<ListEditeurs />}></Route>
+            <Route path="/admin/orders" element={<ListOrders />}></Route>
             
           </Route>
 

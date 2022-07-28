@@ -38,9 +38,7 @@ const Login = () => {
       username,
       password
     };
-    console.log("objetuser")
-    console.log(objetuser)
-
+   
     try {
       const user = await dispatch(login(objetuser)).unwrap();
       if (user && user.isAdmin) {

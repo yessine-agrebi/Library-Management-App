@@ -7,7 +7,7 @@ export const getAllOrders = async (req, res) => {
       let Orders = await Order
         .find({})
         .populate("allProduct.id", "designation imageartpetitf prixVente")
-        .populate("user", "nom email")
+        .populate("user", "username email")
         .sort({ _id: -1 });
       if (Orders) {
         return res.json({ Orders });
